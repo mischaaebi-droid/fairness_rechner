@@ -5,283 +5,956 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fairnessinitiative – Steuerrechner</title>
 <style>
-:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;background:#f5f6f7}
-*{box-sizing:border-box}
-body{margin:0;padding:24px}
-.wrap{max-width:850px;margin:auto}
-.card{background:#fff;border:1px solid #ddd;border-radius:14px;padding:20px;margin-bottom:16px}
-h1{font-size:25px;margin:0 0 7px}
-.intro{margin:0;color:#5b6470;font-size:14px;line-height:1.45}
-.inputs{display:grid;grid-template-columns:minmax(0,1fr) 105px;gap:20px;margin-top:20px;align-items:end}
-.slider-stack{display:grid;grid-template-columns:1fr;gap:16px}
-.kids-input{align-self:end}
-.modebox{margin:0 0 8px;padding:9px 11px;border:1px solid #d8dde3;border-radius:9px;background:#f8f9fa;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.modebox .mode-title{font-size:12px;font-weight:750;margin:0 2px 0 0}
-.modebox label{display:inline-flex;align-items:center;font-size:12px;font-weight:500;margin:0;cursor:pointer}
-.modebox input{margin-right:7px}
-label{font-size:13px;font-weight:650}
-.range-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.range-value{font-size:15px;font-weight:750;white-space:nowrap}
-input[type="range"]{width:100%;margin-top:11px;padding:0;border:0}
-select{width:100%;margin-top:6px;padding:10px 11px;border:1px solid #bbb;border-radius:8px;font-size:16px;background:#fff}
-.smallresults{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.smallresult{border:1px solid #e1e4e8;border-radius:10px;padding:11px;font-size:12px;color:#5d6672}
-.smallresult b{display:block;color:#20262d;font-size:16px;margin-top:4px}
-.main-title{font-size:15px;font-weight:750;margin-bottom:12px}
-.result{border:1px solid #d8dde3;border-radius:12px;padding:18px;margin-top:12px}
-.result .amount{font-size:20px;font-weight:800;margin:0 0 5px}
-.result .explain{font-size:13px;color:#5d6672;line-height:1.4}
-.result .scenario{font-size:12px;color:#68717d;line-height:1.4;margin-top:12px}
-.result.good{background:#f4fbf6;border-color:#b9dec3}
-.result.bad{background:#fff6f6;border-color:#e3bcbc}
-.result.same{background:#f8f9fa}
-.note{font-size:12px;color:#68717d;line-height:1.5}
+:root {
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:#1f2937;
+  background:#f5f6f7}
 
-.chart-title{font-size:20px;font-weight:800;margin-bottom:18px}
-.impact-chart{position:relative;height:430px;margin-top:4px;padding-left:112px}
-.impact-axis{position:absolute;left:105px;top:24px;bottom:56px;width:2px;background:#343a40}
-.impact-zero{position:absolute;left:105px;right:10px;top:170px;border-top:2px solid #59616a}
-.axis-label{position:absolute;left:0;width:92px;text-align:right;font-size:13px;font-weight:750;line-height:1.15}
-.axis-more{top:62px;color:#b63a2b}.axis-less{top:235px;color:#16833a}.zero-label{position:absolute;left:60px;top:160px;font-size:13px;font-weight:700}
-.bars{position:absolute;left:125px;right:15px;top:24px;height:310px;display:flex;justify-content:space-around;gap:28px}
-.bars::after{content:"";position:absolute;left:50%;top:10px;bottom:-35px;border-left:1px solid #e3e6e8;pointer-events:none}
-.bar-item{position:relative;flex:1;max-width:250px;height:310px;text-align:center}
-.bar{position:absolute;left:50%;transform:translateX(-50%);width:min(76px,38%);min-height:3px;border-radius:4px 4px 0 0}
-.bar.less{background:#43a85b;top:146px;border-radius:0 0 4px 4px}.bar.more{background:#cf5548;bottom:164px}
-.bar-value{position:absolute;left:50%;transform:translateX(-50%);width:220px;font-size:14px;font-weight:500;line-height:1.2;white-space:nowrap}.bar-value.inside{width:70px;color:#fff;white-space:normal;line-height:1.15;top:auto;bottom:auto}.bar-value.outside.less{color:#16833a}.bar-value.outside.more{color:#b63a2b}
-.bar-case{position:absolute;left:0;right:0;top:-10px;font-size:15px;font-weight:800}.bar-detail{position:absolute;left:-10px;right:-10px;top:14px;font-size:11px;line-height:1.3;color:#737b85}
-@media(max-width:700px){.inputs{grid-template-columns:1fr}.kids-input{align-self:auto}.modebox{display:block}.modebox .mode-title{margin-bottom:6px}.modebox label{display:block;margin:5px 0}.impact-chart{height:410px;padding-left:80px}.impact-axis,.impact-zero{left:76px}.axis-label{width:66px;font-size:11px}.zero-label{left:48px}.bars{left:90px;gap:10px}.bar-value{font-size:12px;width:145px}.bar-value.inside{width:66px}.bar-case{font-size:13px}.bar-detail{font-size:10px}}
-@media(max-width:700px){
- body{padding:12px}
- .inputs,.smallresults{grid-template-columns:1fr}
- .result .amount{font-size:17px}
+
+  * {
+    box-sizing:border-box}
+
+    body {
+      margin:0;
+      padding:24px}
+
+      .wrap {
+        max-width:850px;
+        margin:auto}
+
+        .card {
+          background:#fff;
+          border:1px solid #ddd;
+          border-radius:14px;
+          padding:20px;
+          margin-bottom:16px}
+
+          h1 {
+            font-size:25px;
+            margin:0 0 7px}
+
+            .intro {
+              margin:0;
+              color:#5b6470;
+              font-size:14px;
+              line-height:1.45}
+
+              .inputs {
+                display:grid;
+                grid-template-columns:1fr;
+                gap:20px;
+                margin-top:20px;
+                align-items:end}
+
+                .slider-stack {
+                  display:grid;
+                  gap:16px}
+
+                  .kids-input {
+                    align-self:end}
+
+                    label {
+                      font-size:13px;
+                      font-weight:650}
+
+                      .range-head {
+                        display:flex;
+                        justify-content:space-between;
+                        gap:10px}
+
+                        .range-value {
+                          font-size:15px;
+                          font-weight:750;
+                          white-space:nowrap}
+
+                          input[type=range] {
+                            width:100%;
+                            margin-top:11px}
+
+                            select {
+                              width:100%;
+                              margin-top:6px;
+                              padding:10px 11px;
+                              border:1px solid #bbb;
+                              border-radius:8px;
+                              font-size:16px;
+                              background:#fff}
+
+
+                              .hero {
+                                text-align:center;
+                                padding:28px 18px}
+
+                                .hero-label {
+                                  font-size:15px;
+                                  font-weight:750;
+                                  color:#4b5563}
+
+                                  .hero-value {
+                                    font-size:48px;
+                                    line-height:1.05;
+                                    font-weight:850;
+                                    letter-spacing:-1.5px;
+                                    margin:8px 0}
+
+                                    .hero-sub {
+                                      font-size:13px;
+                                      color:#68717d}
+
+
+                                      .compare {
+                                        display:grid;
+                                        grid-template-columns:1fr 1fr;
+                                        gap:14px}
+
+                                        .box {
+                                          border:1px solid #d8dde3;
+                                          border-radius:12px;
+                                          padding:17px;
+                                          min-width:0}
+
+                                          .box-title {
+                                            font-size:14px;
+                                            font-weight:800;
+                                            margin-bottom:8px}
+
+                                            .change {
+                                              font-size:27px;
+                                              font-weight:850;
+                                              line-height:1.1}
+
+                                              .less {
+                                                color:#16833a}
+
+                                                .more {
+                                                  color:#b63a2b}
+
+                                                  .same {
+                                                    color:#4b5563}
+
+                                                    .detail {
+                                                      font-size:12px;
+                                                      color:#68717d;
+                                                      line-height:1.45;
+                                                      margin-top:7px}
+
+
+                                                      .switchrow {
+                                                        display:flex;
+                                                        align-items:center;
+                                                        justify-content:space-between;
+                                                        gap:16px;
+                                                        padding:15px 17px;
+                                                        border:1px solid #d8dde3;
+                                                        border-radius:12px;
+                                                        background:#f8f9fa;
+                                                        margin-bottom:14px}
+
+                                                        .switchtext b {
+                                                          display:block;
+                                                          font-size:14px}
+
+                                                          .switchtext span {
+                                                            font-size:12px;
+                                                            color:#68717d}
+
+                                                            .seg {
+                                                              display:flex;
+                                                              border:1px solid #aeb5bd;
+                                                              border-radius:10px;
+                                                              padding:3px;
+                                                              background:#fff;
+                                                              flex-shrink:0}
+
+                                                              .seg button {
+                                                                border:0;
+                                                                background:transparent;
+                                                                padding:9px 12px;
+                                                                border-radius:7px;
+                                                                font:inherit;
+                                                                font-size:12px;
+                                                                font-weight:750;
+                                                                cursor:pointer;
+                                                                color:#4b5563}
+
+                                                                .seg button.active {
+                                                                  background:#1f2937;
+                                                                  color:#fff}
+
+                                                                  .note {
+                                                                    font-size:12px;
+                                                                    color:#68717d;
+                                                                    line-height:1.5}
+
+
+                                                                    
+/* Kompakter gemeinsamer Ergebnisblock */
+.results-card { padding:24px 20px 20px; }
+.results-card .hero { padding:4px 18px 22px; }
+.results-card .compare { border-top:1px solid #e3e6ea; padding-top:18px; }
+.results-card .box { background:#fafbfc; }
+
+/* Prominenter Schalter für den Spielraum des Bundesrats */
+.policy-switch {
+  margin-top:12px;
+  padding:10px 0 0;
 }
+
+.policy-switch-title {
+  text-align:center;
+  font-size:17px;
+  font-weight:850;
+  margin-bottom:10px;
+}
+
+.policy-toggle {
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:77px;
+  padding:6px;
+  border:1px solid #bcc4cc;
+  border-radius:39px;
+  background:#e9edf1;
+  box-shadow:inset 0 1px 3px rgba(31,41,55,.08);
+  overflow:hidden;
+}
+
+.policy-toggle::before {
+  content:"";
+  position:absolute;
+  top:6px;
+  bottom:6px;
+  left:6px;
+  width:calc(50% - 6px);
+  border-radius:33px;
+  background:#fff;
+  border:1px solid #cbd2d9;
+  box-shadow:0 2px 7px rgba(31,41,55,.14);
+  transform:translateX(0);
+  transition:transform .24s cubic-bezier(.22,.8,.25,1);
+}
+
+.policy-toggle.is-worst::before {
+  transform:translateX(100%);
+}
+
+.policy-toggle.hint-best::before {
+ animation:switchHintBest 5.5s ease-in-out infinite;
+}
+
+.policy-toggle.hint-worst::before {
+  animation:switchHintWorst 5.5s ease-in-out infinite;
+}
+
+@keyframes switchHintBest {
+  0%   { transform: translateX(0); }
+  14%  { transform: translateX(10px); }
+  29%  { transform: translateX(3px); }
+  46%  { transform: translateX(17px); }
+  62%  { transform: translateX(6px); }
+  76%  { transform: translateX(12px); }
+  89%  { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes switchHintWorst {
+  0%   { transform: translateX(100%); }
+  14%  { transform: translateX(calc(100% - 10px)); }
+  29%  { transform: translateX(calc(100% - 3px)); }
+  46%  { transform: translateX(calc(100% - 17px)); }
+  62%  { transform: translateX(calc(100% - 6px)); }
+  76%  { transform: translateX(calc(100% - 12px)); }
+  89%  { transform: translateX(calc(100% - 2px)); }
+  100% { transform: translateX(100%); }
+}
+
+.policy-toggle button {
+  position:relative;
+  z-index:1;
+  border:0;
+  border-radius:33px;
+  padding:20px 20px;
+  background:transparent;
+  color:#66717d;
+  font:inherit;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.2;
+  cursor:pointer;
+  transition:color .18s ease;
+}
+
+.policy-toggle button.active {
+  background:transparent;
+  color:#263442;
+  box-shadow:none;
+}
+
+.policy-explain {
+  margin-top:8px;
+  text-align:center;
+  font-size:12px;
+  color:#68717d;
+  line-height:1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .policy-toggle.hint-best::before,
+  .policy-toggle.hint-worst::before {
+    animation:none;
+  }
+}
+
+
+@media(max-width:700px) {
+                                                                      body {
+                                                                        padding:12px}
+
+                                                                        .inputs,.compare {
+                                                                          grid-template-columns:1fr}
+
+                                                                          .hero-value {
+                                                                            font-size:39px}
+
+                                                                            .switchrow {
+                                                                              align-items:flex-start;
+                                                                              flex-direction:column}
+
+                                                                              .seg {
+                                                                                width:100%}
+
+                                                                                .seg button {
+                                                                                  flex:1}
+
+                                                                                  .kids-input {
+                                                                                    align-self:auto}
+
+                                                                                  }
+
+
+/* ---------------------------------------------------------
+   Tages-Anzeiger-inspirierte Gestaltung
+   --------------------------------------------------------- */
+:root {
+  --tagi-ink:#202346;
+  --tagi-paper:#f5f5f7;
+  --tagi-panel:#ebebf0;
+  --tagi-line:#d6d6de;
+  --tagi-muted:#626273;
+  --tagi-white:#ffffff;
+  --tax-less:#16833a;
+  --tax-more:#b63a2b;
+}
+
+body {
+  font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  background:var(--tagi-paper);
+  color:#111217;
+}
+
+.wrap {
+  max-width:820px;
+}
+
+.card {
+  background:var(--tagi-white);
+  border:1px solid var(--tagi-line);
+  border-radius:8px;
+  box-shadow:0 2px 10px rgba(32,35,70,.045);
+}
+
+h1 {
+  color:var(--tagi-ink);
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:-.35px;
+}
+
+.intro,
+.hero-sub,
+.detail {
+  color:var(--tagi-muted);
+}
+
+label,
+.range-value,
+.hero-label,
+.box-title,
+.policy-switch-title {
+  color:var(--tagi-ink);
+}
+
+.range-value {
+  font-weight:650;
+}
+
+input[type=range] {
+  accent-color:var(--tagi-ink);
+}
+
+.results-card {
+  padding:24px 20px 18px;
+}
+
+.results-card .compare {
+  border-top:1px solid var(--tagi-line);
+}
+
+.results-card .box {
+  background:#f7f7f9;
+  border-color:#dedee5;
+  border-radius:7px;
+}
+
+.box-title {
+  font-weight:700;
+}
+
+/* Resultatfarben folgen wieder dynamisch der Richtung: weniger = grün, mehr = rot. */
+/* Falls "mehr/weniger" semantisch wichtiger ist, bleiben die vorhandenen
+   Klassen für andere Ausgaben weiterhin verfügbar. */
+.less { color:var(--tax-less); }
+.more { color:var(--tax-more); }
+
+/* Schalter: ruhig, hochwertig, passend zum dunklen Corporate-Violett. */
+.policy-switch {
+  margin-top:11px;
+  padding-top:9px;
+}
+
+.policy-switch-title {
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:-.1px;
+}
+
+.policy-toggle {
+  min-height:77px;
+  border:1px solid #c9cad4;
+  background:var(--tagi-panel);
+  box-shadow:inset 0 1px 2px rgba(32,35,70,.08);
+}
+
+.policy-toggle::before {
+  background:var(--tagi-white);
+  border:1px solid #c8c9d3;
+  box-shadow:
+    0 3px 10px rgba(32,35,70,.13),
+    0 1px 2px rgba(32,35,70,.08);
+}
+
+.policy-toggle button {
+  color:#666777;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:600;
+  letter-spacing:-.05px;
+}
+
+.policy-toggle button.active {
+  color:var(--tagi-ink);
+  font-weight:700;
+}
+
+/* Kompakter Kinder-Schieber mit sechs festen Positionen */
+.kids-input {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin:0;
+  align-self:end;
+  min-width:0;
+}
+
+.kids-label {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin:0;
+  font-size:13px;
+  font-weight:650;
+  color:var(--tagi-ink);
+}
+
+.kids-current {
+  font-size:14px;
+  font-weight:700;
+  color:var(--tagi-ink);
+}
+
+.kids-range-wrap {
+  width:100%;
+  padding:0 3px;
+}
+
+.kids-range {
+  width:100%;
+  height:20px;
+  margin:0;
+  padding:0;
+  appearance:none;
+  -webkit-appearance:none;
+  background:transparent;
+  cursor:pointer;
+}
+
+/* Schiene und sechs kleine Querstriche */
+.kids-range::-webkit-slider-runnable-track {
+  height:4px;
+  border-radius:2px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(20% - 1px),
+      #8f91a3 calc(20% - 1px) calc(20% + 1px),
+      transparent calc(20% + 1px) 20%
+    ),
+    linear-gradient(#b9bac5,#b9bac5);
+  background-size:100% 10px,100% 2px;
+  background-position:center,center;
+  background-repeat:no-repeat;
+}
+
+.kids-range::-moz-range-track {
+  height:10px;
+  border:0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(20% - 1px),
+      #8f91a3 calc(20% - 1px) calc(20% + 1px),
+      transparent calc(20% + 1px) 20%
+    ),
+    linear-gradient(#b9bac5,#b9bac5);
+  background-size:100% 10px,100% 2px;
+  background-position:center,center;
+  background-repeat:no-repeat;
+}
+
+/* Dunkelvioletter Griff wie bei den Einkommensreglern */
+.kids-range::-webkit-slider-thumb {
+  appearance:none;
+  -webkit-appearance:none;
+  width:15px;
+  height:15px;
+  margin-top:-5.5px;
+  border:0;
+  border-radius:50%;
+  background:var(--tagi-ink);
+  box-shadow:0 1px 2px rgba(32,35,70,.18);
+}
+
+.kids-range::-moz-range-thumb {
+  width:15px;
+  height:15px;
+  border:0;
+  border-radius:50%;
+  background:var(--tagi-ink);
+  box-shadow:0 1px 2px rgba(32,35,70,.18);
+}
+
+.kids-range:focus-visible {
+  outline:2px solid var(--tagi-ink);
+  outline-offset:3px;
+  border-radius:3px;
+}
+
+.kids-ticks {
+  display:flex;
+  justify-content:space-between;
+  padding:0 1px;
+  margin-top:-1px;
+  color:#737483;
+  font-size:10px;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+
+@media(max-width:700px) {
+  .kids-input {
+    align-self:auto;
+    width:max-content;
+  }
+}
+
+
+/* Kinder-Schieber als dritte, gleich breite Eingabezeile */
+.kids-input {
+  width:100%;
+  align-self:stretch;
+  gap:0;
+}
+
+.kids-label {
+  height:auto;
+  margin:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:13px;
+  font-weight:650;
+}
+
+.kids-current {
+  font-size:15px;
+  font-weight:750;
+  white-space:nowrap;
+}
+
+.kids-range-wrap {
+  width:100%;
+  padding:0;
+  margin-top:7px;
+}
+
+/* Die Endmarken sitzen genau an den Enden der Schiene,
+   die vier inneren Marken im 20-Prozent-Raster. */
+.kids-range::-webkit-slider-runnable-track {
+  height:11px;
+  border-radius:0;
+  background:
+    linear-gradient(90deg,
+      #8f91a3 0 1px, transparent 1px calc(20% - 1px),
+      #8f91a3 calc(20% - 1px) calc(20% + 1px), transparent calc(20% + 1px) calc(40% - 1px),
+      #8f91a3 calc(40% - 1px) calc(40% + 1px), transparent calc(40% + 1px) calc(60% - 1px),
+      #8f91a3 calc(60% - 1px) calc(60% + 1px), transparent calc(60% + 1px) calc(80% - 1px),
+      #8f91a3 calc(80% - 1px) calc(80% + 1px), transparent calc(80% + 1px) calc(100% - 1px),
+      #8f91a3 calc(100% - 1px) 100%),
+    linear-gradient(#b9bac5,#b9bac5);
+  background-size:100% 11px,100% 2px;
+  background-position:center,center;
+  background-repeat:no-repeat;
+}
+
+.kids-range::-moz-range-track {
+  height:11px;
+  border:0;
+  border-radius:0;
+  background:
+    linear-gradient(90deg,
+      #8f91a3 0 1px, transparent 1px calc(20% - 1px),
+      #8f91a3 calc(20% - 1px) calc(20% + 1px), transparent calc(20% + 1px) calc(40% - 1px),
+      #8f91a3 calc(40% - 1px) calc(40% + 1px), transparent calc(40% + 1px) calc(60% - 1px),
+      #8f91a3 calc(60% - 1px) calc(60% + 1px), transparent calc(60% + 1px) calc(80% - 1px),
+      #8f91a3 calc(80% - 1px) calc(80% + 1px), transparent calc(80% + 1px) calc(100% - 1px),
+      #8f91a3 calc(100% - 1px) 100%),
+    linear-gradient(#b9bac5,#b9bac5);
+  background-size:100% 11px,100% 2px;
+  background-position:center,center;
+  background-repeat:no-repeat;
+}
+
+.kids-range::-webkit-slider-thumb {
+  margin-top:-5px;
+}
+
+.kids-ticks {
+  padding:0;
+  margin-top:1px;
+  font-size:10px;
+}
+
+
+
+/* Feinjustierung Kinder-Raster:
+   Die Skala beginnt/endet im Mittelpunkt des 15px breiten Slider-Griffs. */
+.kids-range-wrap {
+  position:relative;
+}
+
+.kids-range {
+  display:block;
+}
+
+.kids-range::-webkit-slider-runnable-track {
+  background:none;
+  height:11px;
+}
+
+.kids-range::-moz-range-track {
+  background:none;
+  height:11px;
+}
+
+.kids-range-wrap::before {
+  content:"";
+  position:absolute;
+  left:7.5px;
+  right:7.5px;
+  top:10px;
+  height:11px;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      #8f91a3 0 1px, transparent 1px calc(20% - 1px),
+      #8f91a3 calc(20% - 1px) calc(20% + 1px), transparent calc(20% + 1px) calc(40% - 1px),
+      #8f91a3 calc(40% - 1px) calc(40% + 1px), transparent calc(40% + 1px) calc(60% - 1px),
+      #8f91a3 calc(60% - 1px) calc(60% + 1px), transparent calc(60% + 1px) calc(80% - 1px),
+      #8f91a3 calc(80% - 1px) calc(80% + 1px), transparent calc(80% + 1px) calc(100% - 1px),
+      #8f91a3 calc(100% - 1px) 100%),
+    linear-gradient(#b9bac5,#b9bac5);
+  background-size:100% 11px,100% 2px;
+  background-position:center,center;
+  background-repeat:no-repeat;
+}
+
+.kids-ticks {
+  padding-left:4px;
+  padding-right:4px;
+}
+
+
+/* Feinjustierung Griff Kinder-Schieber:
+   Griff etwas höher und klar vor Linie/Querstrichen. */
+.kids-range-wrap::before {
+  z-index:0;
+}
+
+.kids-range {
+  position:relative;
+  z-index:2;
+}
+
+.kids-range::-webkit-slider-thumb {
+  position:relative;
+  z-index:3;
+  margin-top:-7px;
+}
+
+.kids-range::-moz-range-thumb {
+  position:relative;
+  z-index:3;
+  transform:translateY(-1px);
+}
+
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="card">
-    <h1>Steuerrechner Fairnessinitiative</h1>
-    <p class="intro">Einkommen eingeben und vergleichen, wie hoch die direkte Bundessteuer nach den drei Berechnungsarten ausfällt.</p>
-    <div class="inputs">
-      <div class="slider-stack">
-        <label>
-          <div class="range-head"><span>Einkommen 1</span><span id="income1Text" class="range-value">CHF 162’000</span></div>
-          <input id="income1" type="range" min="0" max="350000" step="1000" value="162000">
-        </label>
-        <label>
-          <div class="range-head"><span>Einkommen 2</span><span id="income2Text" class="range-value">CHF 18’000</span></div>
-          <input id="income2" type="range" min="0" max="350000" step="1000" value="18000">
-        </label>
-      </div>
-      <label class="kids-input">Kinder
-        <select id="kids">
-          <option value="0" selected>0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-      </label>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="chart-title">So würde die Initiative Ihre Steuern verändern</div>
-    <div class="modebox">
-      <div class="mode-title">Berechnung:</div>
-	        <label><input type="radio" name="altMode" value="current">Übergangszeit 2029 bis 2032</label>
-      <label><input type="radio" name="altMode" value="2032" checked>Für die Jahre ab 2032</label>
-
-    </div>
-    <div class="impact-chart">
-      <div class="impact-axis"></div>
-      <div class="impact-zero"></div>
-      <div class="axis-label axis-more">Mehr<br>Steuern</div>
-      <div class="axis-label axis-less">Weniger<br>Steuern</div>
-      <div class="zero-label">CHF 0</div>
-      <div class="bars">
-        <div id="bestBarItem" class="bar-item"></div>
-        <div id="worstBarItem" class="bar-item"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="smallresults">
-      <div class="smallresult"><span id="altLabel">Alternative Berechnung – Individualbesteuerung ab 2032</span><b id="taxInd">–</b></div>
-      <div class="smallresult">Verheiratetentarif mit Abzügen<b id="taxOld">–</b></div>
-      <div class="smallresult">Verheiratetentarif ohne beide Abzüge<b id="taxNo">–</b></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="note">
-      Referenz ist die heutige Ehepaarbesteuerung mit Zweiverdienerabzug und einem Verheiratetenabzug von CHF 2’800. Für die alternative Berechnung kann oben zwischen den Regeln der Individualbesteuerung ab 2032 und den bestehenden Tarifen und Abzügen gewählt werden. Unter der Initiative gilt jeweils der tiefere Betrag aus gemeinsamer Ehepaarbesteuerung und alternativer Berechnung. Beim zweiten Szenario werden Zweiverdiener- und Verheiratetenabzug gestrichen. Dadurch kann für heute bereits begünstigte Ehepaare auch eine Mehrbelastung entstehen.
-    </div>
-  </div>
+<div class="card">
+<h1>So viel Steuern müssten Ehepaare zahlen</h1>
+<p class="intro">Der Rechner zeigt, wie viel mehr oder weniger Steuern Sie zahlen müssten bei Annahme der Initiative.</p>
+<div class="inputs">
+<div class="slider-stack">
+<label>
+<div class="range-head">
+<span>Nettoeinkommen Partner 1</span>
+<span id="income1Text" class="range-value">CHF 162’000</span>
+</div>
+<input id="income1" type="range" min="0" max="350000" step="1000" value="162000">
+</label>
+<label>
+<div class="range-head">
+<span>Nettoeinkommen Partner 2</span>
+<span id="income2Text" class="range-value">CHF 18’000</span>
+</div>
+<input id="income2" type="range" min="0" max="350000" step="1000" value="18000">
+</label>
+<div class="kids-input">
+<div class="kids-label">Kinder <span id="kidsValue" class="kids-current">0</span></div>
+<div class="kids-range-wrap">
+<input id="kids" class="kids-range" type="range" min="0" max="5" step="1" value="0" aria-label="Anzahl Kinder">
+<div class="kids-ticks" aria-hidden="true">
+<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+</div>
+</div>
 </div>
 
+</div>
+</div>
+</div>
+<div class="card results-card">
+<div class="hero">
+<div class="hero-label">Direkte Bundessteuer heute</div>
+<div id="todayTax" class="hero-value">–</div>
+
+<!--
+<div class="hero-sub">Steuerbetrag des Ehepaars nach heutiger gemeinsamer Besteuerung</div>
+-->
+
+
+
+
+
+
+</div>
+<div class="compare">
+<div class="box">
+<div class="box-title">Mit Fairnessinitiative</div>
+<div id="initiativeChange" class="change">–</div>
+<div id="initiativeDetail" class="detail"></div>
+</div>
+<div class="box">
+<div class="box-title">Mit Individualbesteuerung</div>
+<div id="individualChange" class="change">–</div>
+<div id="individualDetail" class="detail"></div>
+</div>
+</div>
+
+<div class="policy-switch">
+<div class="policy-switch-title">Bundesrat nutzt Spielraum der Initiative</div>
+<div class="policy-toggle" role="group" aria-label="Nutzung des Spielraums der Fairnessinitiative">
+<button id="bestBtn" type="button" class="active">Zugunsten der Steuerzahler</button>
+<button id="worstBtn" type="button">Zugunsten der Staatskasse</button>
+</div>
+<div id="variantExplain" class="policy-explain">Verheirateten- und Zweiverdienerabzug bleiben bestehen</div>
+
+</div>
+</div>
+
+</div>
 <script>
 (()=>{
-'use strict';
-const $=id=>document.getElementById(id);
-const fmt=n=>new Intl.NumberFormat('de-CH',{maximumFractionDigits:0}).format(Math.round(n));
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-
-function jobDeduction(income){
-  return Math.max(-income,Math.min(-2000,Math.max(-4000,-0.03*income)));
-}
-function marriedTariff(e){
-  e=Math.max(0,e);
-  if(e<=29700)return 0;
-  if(e<=53400)return (e-29700)*.01;
-  if(e<=61300)return 237+(e-53400)*.02;
-  if(e<=79100)return 395+(e-61300)*.03;
-  if(e<=94900)return 929+(e-79100)*.04;
-  if(e<=108600)return 1561+(e-94900)*.05;
-  if(e<=120500)return 2246+(e-108600)*.06;
-  if(e<=130500)return 2960+(e-120500)*.07;
-  if(e<=138300)return 3660+(e-130500)*.08;
-  if(e<=144200)return 4284+(e-138300)*.09;
-  if(e<=148200)return 4815+(e-144200)*.10;
-  if(e<=150300)return 5215+(e-148200)*.11;
-  if(e<=152300)return 5446+(e-150300)*.12;
-  if(e<=940900)return 5686+(e-152300)*.13;
-  return 108203.5+(e-940900)*.115;
-}
-function singleTariff(e){
-  e=Math.max(0,e);
-  if(e<=20000)return 0;
-  if(e<=34300)return (e-20000)*.007;
-  if(e<=44800)return 100.1+(e-34300)*.009;
-  if(e<=59800)return 194.6+(e-44800)*.02;
-  if(e<=78600)return 494.6+(e-59800)*.033;
-  if(e<=84600)return 1115+(e-78600)*.07;
-  if(e<=112200)return 1535+(e-84600)*.08;
-  if(e<=145800)return 3743+(e-112200)*.095;
-  if(e<=190800)return 6935+(e-145800)*.117;
-  if(e<=732100)return 12200+(e-190800)*.133;
-  return 84191.5+(e-732100)*.115;
-}
-
-function calc(a,b,kids){
-  const ja=jobDeduction(a), jb=jobDeduction(b);
-  const commonJob=ja+jb, insurance=-3700, child=-kids*6800, childIns=-kids*700;
-  const lowerIncome=Math.min(a,b);
-  const lowerJob=jobDeduction(lowerIncome);
-  const lowerAfterJob=lowerIncome+lowerJob;
-  const twoEarner=-Math.min(lowerAfterJob,Math.max(8600,Math.min(lowerAfterJob/2,14100)));
-  const marriedDed=-2800;
-
-  const total=a+b;
-  const taxableOld=Math.max(0,total+commonJob+insurance+child+childIns+twoEarner+marriedDed);
-  const taxOld=Math.max(0,marriedTariff(taxableOld)-kids*263);
-
-  const taxableNo=Math.max(0,total+commonJob+insurance+child+childIns);
-  const taxNo=Math.max(0,marriedTariff(taxableNo)-kids*263);
-
-  const mode=document.querySelector('input[name="altMode"]:checked').value;
-  let taxInd;
-  if(mode==='2032'){
-    // Individualbesteuerung ab 2032 gemäss Excel-Grundlage:
-    // Kinder und kinderbezogene Abzüge werden je zur Hälfte aufgeteilt.
-    const halfKids=kids/2;
-    function individual2032(income,job){
-      const taxable=Math.max(0,income+job-1800-halfKids*12000-halfKids*700);
-      return Math.max(0,singleTariff(taxable)-halfKids*259);
-    }
-    taxInd=individual2032(a,ja)+individual2032(b,jb);
-  }else{
-    // Alternative Berechnung nach bestehendem Recht.
-    // Ohne Kinder: beide Einkommen mit Alleinstehendentarif.
-    // Mit Kindern: Kinderabzüge und Elterntarif beim höheren Einkommen;
-    // die theoretische Variante mit Alleinstehendentarif für beide wird nicht berücksichtigt.
-    if(kids===0){
-      const ta=Math.max(0,a+ja-1800);
-      const tb=Math.max(0,b+jb-1800);
-      taxInd=Math.max(0,singleTariff(ta))+Math.max(0,singleTariff(tb));
-    }else{
-      const aHigher=a>=b;
-      const high=aHigher?a:b, highJob=aHigher?ja:jb;
-      const low=aHigher?b:a, lowJob=aHigher?jb:ja;
-      const highTaxable=Math.max(0,high+highJob-1800-kids*6800-kids*700);
-      const lowTaxable=Math.max(0,low+lowJob-1800);
-      const highTax=Math.max(0,marriedTariff(highTaxable)-kids*263);
-      const lowTax=Math.max(0,singleTariff(lowTaxable));
-      taxInd=highTax+lowTax;
-    }
+  'use strict';
+  const getElement = id => document.getElementById(id);
+  const formatFrancs=n=>new Intl.NumberFormat('de-CH',{
+    maximumFractionDigits:0
+  }).format(Math.round(n));
+  const limitToRange=(v,incomePartner1,incomePartner2)=>Math.max(incomePartner1,Math.min(incomePartner2,v));
+  let initiativeVariant='best';
+  // Abzüge und Steuertarife
+function calculateJobDeduction(income){
+    return Math.max(-income,Math.min(-2000,Math.max(-4000,-0.03*income)))
+  } function calculateCurrentMarriedTariff(e){
+    e=Math.max(0,e);
+    if(e<=29700)return 0;
+    if(e<=53400)return(e-29700)*.01;
+    if(e<=61300)return 237+(e-53400)*.02;
+    if(e<=79100)return 395+(e-61300)*.03;
+    if(e<=94900)return 929+(e-79100)*.04;
+    if(e<=108600)return 1561+(e-94900)*.05;
+    if(e<=120500)return 2246+(e-108600)*.06;
+    if(e<=130500)return 2960+(e-120500)*.07;
+    if(e<=138300)return 3660+(e-130500)*.08;
+    if(e<=144200)return 4284+(e-138300)*.09;
+    if(e<=148200)return 4815+(e-144200)*.10;
+    if(e<=150300)return 5215+(e-148200)*.11;
+    if(e<=152300)return 5446+(e-150300)*.12;
+    if(e<=940900)return 5686+(e-152300)*.13;
+    return 108203.5+(e-940900)*.115
+  } function calculateNewIndividualTariff(e){
+    e=Math.max(0,e);
+    if(e<=20000)return 0;
+    if(e<=34300)return(e-20000)*.007;
+    if(e<=44800)return 100.1+(e-34300)*.009;
+    if(e<=59800)return 194.6+(e-44800)*.02;
+    if(e<=78600)return 494.6+(e-59800)*.033;
+    if(e<=84600)return 1115+(e-78600)*.07;
+    if(e<=112200)return 1535+(e-84600)*.08;
+    if(e<=145800)return 3743+(e-112200)*.095;
+    if(e<=190800)return 6935+(e-145800)*.117;
+    if(e<=732100)return 12200+(e-190800)*.133;
+    return 84191.5+(e-732100)*.115
   }
-  return {taxInd,taxOld,taxNo,mode};
-}
 
-function impactItem(el,change,label,detail,maxAbs){
-  const less=change>0.5, more=change<-0.5;
-  // Dynamische, richtungsabhängige Skala:
-  // Grüne Balken haben nach unten deutlich mehr Platz und dürfen deshalb viel weiter wachsen.
-  // Rote Balken bleiben wegen der Kopfzone kompakter.
-  const amount=Math.abs(change);
-  const baseHeight=amount/2500*90;
-  const maxHeight=less?220:90;
-  const h=Math.max(3,Math.min(maxHeight,Math.round(baseHeight)));
-  const cls=less?'less':more?'more':'less';
-  const words=less?`Sie zahlen ${fmt(change)}.-<br> weniger`:more?`Sie zahlen ${fmt(-change)}.-<br> mehr`:'Ihre Steuer bleibt gleich';
-  // Bei langen Balken steht die Aussage im Balken. Bei kurzen Balken direkt ausserhalb.
-  const fitsInside=h>=58 && (less||more);
-  let valueStyle='';
-  if(fitsInside){
-    valueStyle=less?`top:${146+Math.max(8,(h-38)/2)}px`:`bottom:${164+Math.max(8,(h-38)/2)}px`;
-  }else{
-    valueStyle=less?`top:${146+h+8}px`:`bottom:${164+h+8}px`;
+  // Alter gewöhnlicher Tarif (geltendes Recht)
+  function calculateCurrentSingleTariff(e){
+    e=Math.max(0,e);
+    if(e<=15200)return 0;
+    if(e<=33200)return(e-15200)*.0077;
+    if(e<=43500)return 138.60+(e-33200)*.0088;
+    if(e<=58000)return 229.20+(e-43500)*.0264;
+    if(e<=76100)return 612.00+(e-58000)*.0297;
+    if(e<=82000)return 1149.55+(e-76100)*.0594;
+    if(e<=108800)return 1500.00+(e-82000)*.066;
+    if(e<=141500)return 3268.80+(e-108800)*.088;
+    if(e<=184900)return 6146.40+(e-141500)*.11;
+    if(e<=793300)return 10920.40+(e-184900)*.132;
+    return 91241.00+(e-793400)*.115;
   }
-  el.innerHTML=`<div class="bar ${cls}" style="height:${h}px"></div>
-    <div class="bar-value ${fitsInside?'inside':'outside'} ${cls}" style="${valueStyle}">${words}</div>
-    <div class="bar-case">${label}</div>
-    <div class="bar-detail">${detail}</div>`;
-}
 
-function renderImpact(r){
-  const initiativeWith=Math.min(r.taxOld,r.taxInd);
-  const initiativeWithout=Math.min(r.taxNo,r.taxInd);
-  // Referenz: in der Übergangszeit heutige Ehepaarbesteuerung; ab 2032 Individualbesteuerung.
-  const referenceTax=r.mode==='2032'?r.taxInd:r.taxOld;
-  const c1=referenceTax-initiativeWith;
-  const c2=referenceTax-initiativeWithout;
-  const best=Math.max(c1,c2), worst=Math.min(c1,c2);
-  const maxAbs=Math.max(Math.abs(best),Math.abs(worst),1);
-  const bestDetail=c1>=c2?' Bundesrat belässt Verheirateten- und Zweiverdienerabzüge.':'Bundesrat streicht Verheirateten- und Zweiverdienerabzug.';
-  const worstDetail=c1<c2?'Verheirateten- und Zweiverdienerabzug bleiben bestehen.':'Bundesrat streicht Verheirateten- und Zweiverdienerabzug.';
-  impactItem($('bestBarItem'),best,'Bester Fall',bestDetail,maxAbs);
-  impactItem($('worstBarItem'),worst,'Schlechtester Fall',worstDetail,maxAbs);
-}
+  // Zentrale Berechnung aller Vergleichswerte
+function calculateTaxes(incomePartner1, incomePartner2, numberOfChildren){
+    const jobDeductionPartner1=calculateJobDeduction(incomePartner1),jobDeductionPartner2=calculateJobDeduction(incomePartner2),combinedJobDeductions=jobDeductionPartner1+jobDeductionPartner2,insuranceDeduction=-3700,childDeduction=-numberOfChildren*6800,childInsuranceDeduction=-numberOfChildren*700;
+    const lowerIncome=Math.min(incomePartner1,incomePartner2),lowerIncomeJobDeduction=calculateJobDeduction(lowerIncome),lowerIncomeAfterJobDeduction=lowerIncome+lowerIncomeJobDeduction;
+    const twoEarnerDeduction=-Math.min(lowerIncomeAfterJobDeduction,Math.max(8600,Math.min(lowerIncomeAfterJobDeduction/2,14100)));
+    const combinedIncome=incomePartner1+incomePartner2;
+    const taxableIncomeToday=Math.max(0,combinedIncome+combinedJobDeductions+insuranceDeduction+childDeduction+childInsuranceDeduction+twoEarnerDeduction-2800);
+    const taxToday=Math.max(0,calculateCurrentMarriedTariff(taxableIncomeToday)-numberOfChildren*263);
+    const taxableIncomeWithoutMarriageDeductions=Math.max(0,combinedIncome+combinedJobDeductions+insuranceDeduction+childDeduction+childInsuranceDeduction);
+    const taxWithoutMarriageDeductions=Math.max(0,calculateCurrentMarriedTariff(taxableIncomeWithoutMarriageDeductions)-numberOfChildren*263);
+    const childrenPerPartner=numberOfChildren/2;
 
-function render(){
-  const a=Math.max(0,+($('income1').value||0));
-  const b=Math.max(0,+($('income2').value||0));
-  const kids=clamp(+($('kids').value||0),0,10);
-  const r=calc(a,b,kids);
+    // Fairnessinitiative: separate Alternativberechnung vor 2032.
+    // Kinderabzüge werden je zur Hälfte auf beide Partner verteilt.
+    function fairnessTaxableIncome(income,job,extraDeduction=0){
+      return Math.max(0,income+job-1800-childrenPerPartner*6800-childrenPerPartner*700-extraDeduction);
+    }
 
-  $('income1Text').textContent=`CHF ${fmt(a)}`;
-  $('income2Text').textContent=`CHF ${fmt(b)}`;
-  $('taxInd').textContent=`CHF ${fmt(r.taxInd)}`;
-  $('altLabel').textContent=r.mode==='2032'?'Alternative Berechnung – Individualbesteuerung ab 2032':'Alternative Berechnung – bestehendes Recht';
-  $('taxOld').textContent=`CHF ${fmt(r.taxOld)}`;
-  $('taxNo').textContent=`CHF ${fmt(r.taxNo)}`;
+    const exactlyOneEarner=(incomePartner1>0)!==(incomePartner2>0);
+    const oneEarnerDeductionPartner1=exactlyOneEarner&&incomePartner1>0?8100:0;
+    const oneEarnerDeductionPartner2=exactlyOneEarner&&incomePartner2>0?8100:0;
 
-  renderImpact(r);
-}
+    const taxableAlternativePartner1=fairnessTaxableIncome(incomePartner1,jobDeductionPartner1,oneEarnerDeductionPartner1);
+    const taxableAlternativePartner2=fairnessTaxableIncome(incomePartner2,jobDeductionPartner2,oneEarnerDeductionPartner2);
 
-['income1','income2','kids'].forEach(id=>$(id).addEventListener('input',render));
- document.querySelectorAll('input[name="altMode"]').forEach(el=>el.addEventListener('change',render));
-$('kids').addEventListener('change',render);
-render();
+    // Modus «Beide Abzüge bleiben»: höheres Einkommen mit altem
+    // Verheiratetentarif, tieferes Einkommen mit altem gewöhnlichem Tarif.
+    const partner1IsHigher=incomePartner1>=incomePartner2;
+    const fairnessAlternativeWithDeductions=
+      Math.max(0,(partner1IsHigher?calculateCurrentMarriedTariff(taxableAlternativePartner1):calculateCurrentSingleTariff(taxableAlternativePartner1))-childrenPerPartner*263)+
+      Math.max(0,(partner1IsHigher?calculateCurrentSingleTariff(taxableAlternativePartner2):calculateCurrentMarriedTariff(taxableAlternativePartner2))-childrenPerPartner*263);
+
+    // Modus «Beide Abzüge entfallen»: beide Partner mit dem alten
+    // gewöhnlichen Tarif.
+    const fairnessAlternativeWithoutDeductions=
+      Math.max(0,calculateCurrentSingleTariff(taxableAlternativePartner1)-childrenPerPartner*263)+
+      Math.max(0,calculateCurrentSingleTariff(taxableAlternativePartner2)-childrenPerPartner*263);
+
+    const initiativeTaxWithDeductions=Math.min(taxToday,fairnessAlternativeWithDeductions);
+    const initiativeTaxWithoutDeductions=Math.min(taxWithoutMarriageDeductions,fairnessAlternativeWithoutDeductions);
+
+    /* Individualbesteuerung gemäss Excel-Tabelle:
+   je Person CHF 1'800 Versicherungsabzug, Kinderabzug CHF 12'000
+   und Kinder-Versicherungsabzug CHF 700, je hälftig verteilt;
+   Steuerabzug pro Kind CHF 259, ebenfalls hälftig. */
+    function individualNew(income,job){
+      const taxable=Math.max(0,income+job-1800-childrenPerPartner*12000-childrenPerPartner*700);
+      return Math.max(0,calculateNewIndividualTariff(taxable)-childrenPerPartner*259);
+    } const individualTax=individualNew(incomePartner1,jobDeductionPartner1)+individualNew(incomePartner2,jobDeductionPartner2);
+    return{
+      taxToday,initiativeTaxWithDeductions,initiativeTaxWithoutDeductions,individualTax
+    }
+  } // Darstellung der Steuerdifferenzen im Frontend
+function displayTaxDifference(element,difference){
+    element.className='change '+(difference<-.5?'less':difference>.5?'more':'same');
+    element.textContent=Math.abs(difference)<=.5?'gleich viel':`CHF ${formatFrancs(Math.abs(difference))} ${difference<0?'weniger':'mehr'}`
+  } function render(){
+    const a=Math.max(0,+getElement('income1').value||0),b=Math.max(0,+getElement('income2').value||0),numberOfChildren=limitToRange(+getElement('kids').value||0,0,10),r=calculateTaxes(a,b,numberOfChildren);
+    getElement('income1Text').textContent=`CHF ${formatFrancs(a)}`;
+    getElement('income2Text').textContent=`CHF ${formatFrancs(b)}`;
+    getElement('kidsValue').textContent=String(numberOfChildren);
+    getElement('todayTax').textContent=`CHF ${formatFrancs(r.taxToday)}`;
+    const initiativeTax=initiativeVariant==='best'?r.initiativeTaxWithDeductions:r.initiativeTaxWithoutDeductions;
+    const individualTax=r.individualTax;
+    displayTaxDifference(getElement('initiativeChange'),initiativeTax-r.taxToday);
+    getElement('initiativeDetail')//.textContent='gegenüber der heutigen direkten Bundessteuer';
+    displayTaxDifference(getElement('individualChange'),individualTax-r.taxToday);
+    getElement('individualDetail')//.textContent='gegenüber der heutigen direkten Bundessteuer';
+    getElement('variantExplain').textContent=initiativeVariant==='best'?'Verheirateten- und Zweiverdienerabzug bleiben bestehen':'Verheirateten- und Zweiverdienerabzug entfallen';
+    getElement('bestBtn').classList.toggle('active',initiativeVariant==='best');
+    getElement('worstBtn').classList.toggle('active',initiativeVariant==='worst');
+
+    const policyToggle=getElement('bestBtn').parentElement;
+    const isWorst=initiativeVariant==='worst';
+
+    policyToggle.classList.toggle('is-worst',isWorst);
+    policyToggle.classList.toggle('hint-best',!isWorst);
+    policyToggle.classList.toggle('hint-worst',isWorst);
+  }
+['income1', 'income2', 'kids'].forEach(id => {
+    getElement(id).addEventListener('input', render);
+  });
+  getElement('kids').addEventListener('change',render);
+  getElement('bestBtn').addEventListener('click',()=>{
+    initiativeVariant='best';
+    render()
+  });
+  getElement('worstBtn').addEventListener('click',()=>{
+    initiativeVariant='worst';
+    render()
+  });
+  render();
 })();
-</script>
-</body>
-</html>
+</script></body></html>
