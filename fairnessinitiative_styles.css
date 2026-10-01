@@ -46,6 +46,7 @@ body {
   box-shadow:0 2px 10px rgba(32,35,70,.045);
   padding:20px;
   margin-bottom:16px;
+  background-color: rgba(255, 228, 98, 0.16);
 }
 
 h1 {
@@ -152,7 +153,7 @@ select {
 }
 
 .hero-label {
-  font-size:15px;
+  font-size:14px;
   font-weight:750;
 }
 
@@ -184,7 +185,7 @@ select {
   min-width:0;
   border:1px solid #dedee5;
   border-radius:7px;
-  padding:17px;
+  padding:12px;
   background:#f7f7f9;
 }
 
@@ -744,5 +745,5 @@ select {
 @media (max-width:700px) {
   .range-head { align-items:flex-start; }
   .income-right { gap:7px; }
-  .pension-check span { font-size:10px; }
+  .pension-check span { font-size:12px; }
 }
