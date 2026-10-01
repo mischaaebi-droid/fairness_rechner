@@ -144,11 +144,11 @@ select {
 }
 
 .results-card {
-  padding:24px 20px 18px;
+  padding:18px 20px 18px;
 }
 
 .results-card .hero {
-  padding:4px 18px 22px;
+  padding:4px 18px 8px;
 }
 
 .hero-label {
@@ -176,8 +176,8 @@ select {
 }
 
 .results-card .compare {
-  border-top:1px solid var(--tagi-line);
-  padding-top:18px;
+  /* border-top:1px solid var(--tagi-line); */
+  padding-top:10px;
 }
 
 .box {
@@ -284,7 +284,7 @@ select {
 
 .policy-switch-title {
   margin-bottom:10px;
-  text-align:center;
+  text-align:left;
   font-size:16px;
   font-weight:700;
   letter-spacing:-.1px;
@@ -709,7 +709,7 @@ select {
   align-items:center;
   gap:4px;
   margin:0;
-  font-size:11px;
+  font-size:13px;
   font-weight:500;
   color:#737483;
   white-space:nowrap;
