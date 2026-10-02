@@ -60,7 +60,7 @@
 <input id="income2" type="range" min="0" max="300000" step="1000" value="18000">
 </label>
 <div class="kids-input">
-<div class="kids-label">Kinder <span id="kidsValue" class="kids-current">0</span></div>
+<div class="kids-label">Unterstützungspflichtige Kinder <span id="kidsValue" class="kids-current">0</span></div>
 <div class="kids-range-wrap">
 <input id="kids" class="kids-range" type="range" min="0" max="5" step="1" value="0" aria-label="Anzahl Kinder">
 <div class="kids-ticks" aria-hidden="true">
@@ -102,9 +102,10 @@
 
 <div class="policy-switch">
 <div class="policy-switch-title">Bundesrat nutzt Spielraum der Initiative...</div>
+
 <div class="policy-toggle" role="group" aria-label="Nutzung des Spielraums der Fairnessinitiative">
-<button id="bestBtn" type="button" class="active">Zugunsten der Steuerzahler</button>
-<button id="worstBtn" type="button">Zugunsten der Staatskasse</button>
+  <button id="worstBtn" type="button" class="active">Zugunsten der Staatskasse</button>
+  <button id="bestBtn" type="button">Zugunsten der Steuerzahler</button>
 </div>
 
 <!-- gibt noch eine switch js-componente dazu. sie ist ebenfalls auskommentiert <div id="variantExplain" class="policy-explain">Verheirateten- und Zweiverdienerabzug bleiben bestehen</div> -->
@@ -114,9 +115,81 @@
 
 </div>
 
+
+
+<details class="card methodology">
+  <summary>Methodik</summary>
+
+  <div class="methodology-content">
+
+    <h3>Grundlage</h3>
+
+    <p>
+      Der Bundesrat erklärt in seiner Botschaft, welchen Spielraum er bei
+      einer Umsetzung der Initiative per Verordnung hat und welche Abzüge
+      und Tarife er dabei verändern darf. Der Rechner bildet genau diesen
+      beschriebenen Spielraum ab.
+    </p>
+
+    <h3>Fairnessinitiative: Spielraum zugunsten Steuerzahler</h3>
+
+    <ol>
+      <li>
+        Berechnung der Steuer bei gemeinsamer Veranlagung wie heute.
+      </li>
+      <li>
+        Separate Berechnung für beide Partner; bei Kindern erhält der
+        besserverdienende Partner den günstigeren Verheiratetentarif.
+      </li>
+      <li>
+        Bei Einverdienern wird ein Abzug von 8100 Franken berücksichtigt.
+      </li>
+      <li>
+        Am Ende zählt die tiefere der beiden Berechnungen.
+      </li>
+    </ol>
+
+    <h3>Fairnessinitiative: Spielraum zugunsten Staatskasse</h3>
+
+    <ol>
+      <li>
+        Berechnung der gemeinsamen Steuer ohne Verheirateten- und
+        Zweiverdienerabzug.
+      </li>
+      <li>
+        Separate Berechnung beider Partner mit dem gewöhnlichen Tarif,
+        auch bei Kindern.
+      </li>
+      <li>
+        Am Ende zählt die tiefere der beiden Berechnungen.
+      </li>
+    </ol>
+
+    <h3>Individualbesteuerung</h3>
+
+    <p>
+      Wenn die Initiative nicht angenommen wird, gilt ab 2032 die bereits
+      beschlossene Individualbesteuerung. Der Rechner berechnet sie anhand
+      der im neuen Gesetz festgelegten Tarife und Abzüge.
+    </p>
+
+  </div>
+</details>
+
 <button id="testToolToggle" class="test-tool-toggle" type="button" aria-expanded="false">
   Testtool
 </button>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -221,7 +294,7 @@ testToolToggle.addEventListener('click', () => {
     maximumFractionDigits:0
   }).format(Math.round(n));
   const limitToRange=(v,incomePartner1,incomePartner2)=>Math.max(incomePartner1,Math.min(incomePartner2,v));
-  let initiativeVariant='best';
+ let initiativeVariant='worst';
   // Abzüge und Steuertarife
 function calculateJobDeduction(income){
     return Math.max(-income,Math.min(-2000,Math.max(-4000,-0.03*income)))
@@ -653,34 +726,77 @@ const r = calculateTaxes(
     const isWorst=initiativeVariant==='worst';
 
     policyToggle.classList.toggle('is-worst',isWorst);
-    policyToggle.classList.toggle('hint-best',!isWorst);
-    policyToggle.classList.toggle('hint-worst',isWorst);
+	
+	policyToggle.classList.toggle('hint-worst', isWorst);
+policyToggle.classList.toggle('hint-best', !isWorst);
+ 
     renderTestTool(a,b,numberOfChildren,r,initiativeTax);
     renderIndividualTestTool(
   a,
   b,
-  numberOfChildren,
-  r,
-  retiredPartner1,
-  retiredPartner2
+
+numberOfChildren,
+r,
+retiredPartner1,
+retiredPartner2
 );
   }
-['income1', 'income2', 'kids'].forEach(id => {
+
+  // Eingabefelder
+  ['income1', 'income2', 'kids'].forEach(id => {
     getElement(id).addEventListener('input', render);
   });
 
+  // Pensioniert-Checkboxen
   ['retired1', 'retired2'].forEach(id => {
     getElement(id).addEventListener('change', render);
   });
-  getElement('kids').addEventListener('change',render);
-  getElement('bestBtn').addEventListener('click',()=>{
-    initiativeVariant='best';
-    render()
+
+  // Kinder
+  getElement('kids').addEventListener('change', render);
+
+
+  // Spielraum-Schalter
+  const policyToggle = getElement('bestBtn').parentElement;
+
+  let draggingPolicy = false;
+
+  function setPolicyFromPosition(clientX) {
+    const rect = policyToggle.getBoundingClientRect();
+    const position = (clientX - rect.left) / rect.width;
+
+    initiativeVariant = position < 0.5 ? 'worst' : 'best';
+    render();
+  }
+
+  // Schalter greifen / anklicken
+  policyToggle.addEventListener('pointerdown', event => {
+    draggingPolicy = true;
+    policyToggle.setPointerCapture(event.pointerId);
+
+    setPolicyFromPosition(event.clientX);
   });
-  getElement('worstBtn').addEventListener('click',()=>{
-    initiativeVariant='worst';
-    render()
+
+  // Schalter ziehen
+  policyToggle.addEventListener('pointermove', event => {
+    if (!draggingPolicy) return;
+
+    setPolicyFromPosition(event.clientX);
   });
+
+  // Schalter loslassen
+  policyToggle.addEventListener('pointerup', () => {
+    draggingPolicy = false;
+  });
+
+  policyToggle.addEventListener('pointercancel', () => {
+    draggingPolicy = false;
+  });
+
+
+  // Erste Berechnung beim Laden
   render();
+
+
 })();
 </script></body></html>
