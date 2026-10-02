@@ -343,22 +343,22 @@ select {
 
 @keyframes switchHintWorst {
   0%   { transform:translateX(0); }
-  14%  { transform:translateX(10px); }
+  14%  { transform:translateX(8px); }
   29%  { transform:translateX(3px); }
-  46%  { transform:translateX(17px); }
-  62%  { transform:translateX(6px); }
-  76%  { transform:translateX(12px); }
+  46%  { transform:translateX(14px); }
+  62%  { transform:translateX(4px); }
+  76%  { transform:translateX(10px); }
   89%  { transform:translateX(2px); }
   100% { transform:translateX(0); }
 }
 
 @keyframes switchHintBest {
   0%   { transform:translateX(100%); }
-  14%  { transform:translateX(calc(100% - 10px)); }
+  14%  { transform:translateX(calc(100% - 8px)); }
   29%  { transform:translateX(calc(100% - 3px)); }
-  46%  { transform:translateX(calc(100% - 17px)); }
-  62%  { transform:translateX(calc(100% - 6px)); }
-  76%  { transform:translateX(calc(100% - 12px)); }
+  46%  { transform:translateX(calc(100% - 14px)); }
+  62%  { transform:translateX(calc(100% - 5px)); }
+  76%  { transform:translateX(calc(100% - 10px)); }
   89%  { transform:translateX(calc(100% - 2px)); }
   100% { transform:translateX(100%); }
 }
