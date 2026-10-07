@@ -145,7 +145,7 @@ select {
 }
 
 .results-card {
-  padding:18px 20px 18px;
+  padding:15px 20px 17px;
 }
 
 .results-card .hero {
@@ -178,14 +178,14 @@ select {
 
 .results-card .compare {
   /* border-top:1px solid var(--tagi-line); */
-  padding-top:10px;
+  padding-top:7px;
 }
 
 .box {
   min-width:0;
-  border:1px solid #dedee5;
+  border:2px solid #dedee5;
   border-radius:7px;
-  padding:12px;
+  padding:9px;
   background:#f7f7f9;
 }
 
@@ -196,7 +196,7 @@ select {
 }
 
 .change {
-  font-size:27px;
+  font-size:18px;
   font-weight:850;
   line-height:1.1;
 }
@@ -656,7 +656,7 @@ select {
   }
 
   .hero-value {
-    font-size:39px;
+    font-size:25px;
   }
 
   .switchrow {
