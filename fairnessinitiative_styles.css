@@ -45,7 +45,7 @@ body {
   border-radius:8px;
   box-shadow:0 2px 10px rgba(32,35,70,.045);
   padding:20px;
-  margin-bottom:16px;
+  margin-bottom:10px;
   background-color: rgba(255, 228, 98, 0.12);
 }
 
@@ -185,7 +185,7 @@ select {
   min-width:0;
   border:2px solid #dedee5;
   border-radius:7px;
-  padding:9px;
+  padding:8px;
   background:#f7f7f9;
 }
 
