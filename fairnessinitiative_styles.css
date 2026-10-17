@@ -928,3 +928,40 @@ input[type=range] { accent-color:#202346; cursor:pointer; margin:13px 0 0; }
     margin: 0;
   }
 }
+
+
+@media (max-width: 700px) {
+  .slider-stack .range-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    column-gap: 6px;
+    row-gap: 6px;
+    align-items: center;
+  }
+
+  .slider-stack .range-head > span:first-child {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .slider-stack .income-right {
+    display: contents;
+  }
+
+  .slider-stack .pension-check {
+    grid-column: 2;
+    grid-row: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-self: end;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  .slider-stack .range-value {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
