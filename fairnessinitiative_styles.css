@@ -812,3 +812,100 @@ select {
 .methodology-content li {
   margin-bottom:5px;
 }
+
+/* =========================================================
+   REDESIGN 2026 – kompakte, redaktionelle Oberfläche
+   ========================================================= */
+@font-face { font-family:"IBM Plex Sans"; src:url("IBMPlexSans-Regular.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
+@font-face { font-family:"IBM Plex Sans"; src:url("IBMPlexSans-Bold.woff2") format("woff2"); font-style:normal; font-weight:700 900; font-display:swap; }
+:root {
+  --tagi-ink:#202346;       /* Tiefes Marineblau */
+  --tagi-paper:#fffdf5;     /* Kühles Offwhite */
+  --tagi-panel:#fff7dc;     /* Hellblaugrau */
+  --tagi-line:#e6dfcc;      /* Feine Trennlinien */
+  --tagi-muted:#66627a;     /* Gedämpftes Schieferblau */
+  --tagi-white:#ffffff;     /* Weiss */
+  --tax-less:#16833a;      /* Ruhiges Smaragdgrün */
+  --tax-more:#b63a2b;      /* Gedämpftes Terrakotta */
+}
+html { background:var(--tagi-paper); }
+body { padding:20px 12px; color:var(--tagi-ink); background:var(--tagi-paper); font-size:14px; }
+.wrap { max-width:860px; }
+.card { margin:0 0 12px; padding:24px 26px; border:1px solid var(--tagi-line); border-radius:16px; background:#fff; box-shadow:0 5px 24px rgba(20,38,59,.035); }
+h1 { font-size:clamp(23px,3vw,30px); line-height:1.18; letter-spacing:-.85px; margin:0 0 6px; font-weight:700; }
+.intro { max-width:680px; font-size:13px; line-height:1.45; }
+.inputs { grid-template-columns:minmax(0,1fr); margin-top:22px; gap:13px; }
+.slider-stack { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; }
+.slider-stack > label { display:block; min-width:0; background:#fff9e7; border:1px solid #efe6cb; border-radius:11px; padding:13px 14px 10px; }
+.range-head { flex-direction:column; align-items:stretch; gap:7px; }
+.range-head > span:first-child,.kids-label { font-size:12px; color:var(--tagi-muted); font-weight:700; }
+.income-right { justify-content:space-between; width:100%; gap:8px; }
+.range-value { font-size:19px; line-height:1.2; letter-spacing:-.35px; font-weight:700; font-variant-numeric:tabular-nums; }
+.pension-check { font-size:11px; color:var(--tagi-muted); gap:5px; }
+.pension-check input { width:15px; height:15px; border-radius:4px; border-color:#938ba8; }
+input[type=range] { accent-color:#202346; cursor:pointer; margin:13px 0 0; }
+.kids-input { padding:4px 2px 0; }
+.kids-label { display:flex; gap:12px; justify-content:flex-start; }
+.kids-current { display:inline-flex; align-items:center; justify-content:center; min-width:25px; height:23px; padding:0 7px; background:#fff0b8; color:#202346; border-radius:7px; font-size:13px; }
+.kids-range-wrap { margin-top:4px; max-width:380px; }
+.kids-range::-webkit-slider-thumb { background:#202346; }
+.kids-range::-moz-range-thumb { background:#202346; }
+.kids-range::-webkit-slider-runnable-track { border-color:#e1d5a8; background:#fff3cb; }
+.kids-range::-moz-range-track { border-color:#e1d5a8; background:#fff3cb; }
+.results-card { padding:20px 24px 22px; }
+.results-card .hero { display:flex; justify-content:space-between; align-items:center; gap:16px; text-align:left; padding:3px 1px 17px; border-bottom:1px solid var(--tagi-line); margin-bottom:15px; }
+.hero-label { font-size:15px; letter-spacing:-.1px; font-weight:700; }
+.hero-context { color:var(--tagi-muted); font-size:12px; font-weight:400; }
+.hero-value { font-size:clamp(28px,4vw,38px); line-height:1.08; letter-spacing:-1px; margin:0; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.compare { gap:12px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.results-card .compare { padding:0; }
+.box { background:#fff9e9; padding:16px 18px 14px; border:1px solid #eee2c7; border-radius:12px; }
+.box-title { font-size:13px; font-weight:700; margin-bottom:10px; }
+.change { font-size:clamp(19px,2.7vw,26px); line-height:1.15; letter-spacing:-.5px; font-weight:700; font-variant-numeric:tabular-nums; }
+.compare-caption { font-size:11px; color:var(--tagi-muted); margin-top:5px; }
+.policy-switch { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 1px 0; margin-top:18px; border-top:1px solid var(--tagi-line); }
+.policy-switch-title { margin:0; max-width:210px; font-size:13px; line-height:1.35; font-weight:700; }
+.policy-toggle { flex:1 1 480px; max-width:520px; min-height:46px; padding:4px; border-radius:11px; background:#fff7dc; border:1px solid #e5d9b4; box-shadow:none; touch-action:pan-y; }
+.policy-toggle::before { top:4px; bottom:4px; left:4px; width:calc(50% - 4px); border-radius:8px; border:1px solid #e4d9bd; box-shadow:0 2px 6px rgba(32,35,70,.08); }
+.policy-toggle button { padding:8px 11px; font-size:12px; font-weight:700; border-radius:8px; color:#655f79; pointer-events:none; }
+.policy-toggle button.active { font-weight:700; }
+.policy-toggle.hint-best::before,.policy-toggle.hint-worst::before { animation:none; }
+.policy-explain { font-size:12px; }
+.methodology { margin:12px auto 0; padding:14px 21px; background:#fff; }
+.methodology summary { font-size:13px; }
+.test-tool-toggle { margin:12px auto 0; border-radius:10px; border-color:var(--tagi-line); color:var(--tagi-muted); }
+.test-tool { max-width:100%; }
+:where(input,button,summary):focus-visible { outline:3px solid #b9a0e5; outline-offset:3px; }
+@media(max-width:700px) {
+ body { padding:10px 8px; }
+ .card { padding:18px 16px; border-radius:13px; margin-bottom:10px; }
+ .inputs { margin-top:16px; }
+ .slider-stack { grid-template-columns:minmax(0,1fr); gap:9px; }
+ .slider-stack > label { padding:11px 9px 9px; }
+ .range-value { font-size:16px; }
+ .income-right { flex-direction:column; align-items:flex-start; gap:6px; }
+ .range-head > span:first-child { font-size:11px; }
+ .pension-check span { font-size:11px; }
+ .results-card { padding:17px 15px 18px; }
+ .results-card .hero { align-items:flex-start; gap:9px; }
+ .hero-value { font-size:26px; }
+ .hero-label { font-size:13px; }
+ .hero-context { display:block; margin-top:2px; }
+ .compare { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+ .box { padding:13px 10px; }
+ .box-title { font-size:12px; }
+ .change { font-size:18px; overflow-wrap:anywhere; }
+ .policy-switch { display:block; margin-top:14px; padding-top:14px; }
+ .policy-switch-title { max-width:none; margin-bottom:9px; }
+ .policy-toggle { max-width:none; min-height:48px; }
+ .policy-toggle button { padding:7px 5px; font-size:11px; }
+}
+@media(max-width:370px) {
+ .slider-stack { grid-template-columns:1fr; }
+ .income-right { flex-direction:row; align-items:center; }
+ .compare { grid-template-columns:1fr; }
+ .results-card .hero { flex-direction:column; }
+}
+
+/* Einkommensregler nutzen die volle Kartenbreite. */
+.slider-stack > label > input[type="range"] { display:block; width:100%; min-width:0; }
