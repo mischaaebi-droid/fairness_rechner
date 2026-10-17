@@ -909,3 +909,22 @@ input[type=range] { accent-color:#202346; cursor:pointer; margin:13px 0 0; }
 
 /* Einkommensregler nutzen die volle Kartenbreite. */
 .slider-stack > label > input[type="range"] { display:block; width:100%; min-width:0; }
+@media (max-width: 700px) {
+  .income-label-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    gap: 5px;
+  }
+
+  .income-label-row .pension-check {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin: 0;
+  }
+}
