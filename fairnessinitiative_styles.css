@@ -3,14 +3,14 @@
    ========================================================= */
 
 :root {
-  --tagi-ink:#202346;
-  --tagi-paper:#f5f5f7;
-  --tagi-panel:#ebebf0;
-  --tagi-line:#d6d6de;
-  --tagi-muted:#626273;
-  --tagi-white:#ffffff;
-  --tax-less:#16833a;
-  --tax-more:#b63a2b;
+--tagi-ink:#202346;       /* Dunkelblau */
+--tagi-paper:#f5f5f7;     /* Sehr helles Grau */
+--tagi-panel:#ebebf0;     /* Helles Grauviolett */
+--tagi-line:#d6d6de;      /* Mittelhelles Grauviolett */
+--tagi-muted:#626273;     /* Gedämpftes Graublau */
+--tagi-white:#ffffff;     /* Weiss */
+--tax-less:#16833a;       /* Dunkelgrün – Steuerersparnis */
+--tax-more:#b63a2b;       /* Ziegelrot – Steuermehrbelastung */
 
   font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
   color:#111217;
@@ -23,7 +23,7 @@
 
 body {
   margin:0;
-  padding:24px;
+  padding:10px;
   font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
   background:var(--tagi-paper);
   color:#111217;
@@ -42,11 +42,11 @@ body {
 .card {
   background:var(--tagi-white);
   border:2px solid var(--tagi-line);
-  border-radius:8px;
+  border-radius:1px;
   box-shadow:0 2px 10px rgba(32,35,70,.045);
-  padding:20px;
+  padding:10px;
   margin-bottom:10px;
-  background-color: rgba(255, 228, 98, 0.12);
+  background-color: rgba(255, 228, 98, 0.17);
 }
 
 h1 {
@@ -145,7 +145,7 @@ select {
 }
 
 .results-card {
-  padding:15px 20px 17px;
+  padding:10px 20px 17px;
 }
 
 .results-card .hero {
@@ -162,7 +162,7 @@ select {
   line-height:1.05;
   font-weight:850;
   letter-spacing:-1.5px;
-  margin:8px 0;
+  margin:4px 0;
 }
 
 .hero-sub {
@@ -178,13 +178,13 @@ select {
 
 .results-card .compare {
   /* border-top:1px solid var(--tagi-line); */
-  padding-top:7px;
+  padding-top:3px;
 }
 
 .box {
   min-width:0;
   border:2px solid #dedee5;
-  border-radius:7px;
+  border-radius:1px;
   padding:8px;
   background:#f7f7f9;
 }
@@ -647,7 +647,7 @@ select {
 
 @media(max-width:700px) {
   body {
-    padding:12px;
+    padding:8px;
   }
 
   .inputs,

@@ -89,19 +89,19 @@
 </div>
 <div class="compare">
 <div class="box">
-<div class="box-title">Mit Fairnessinitiative</div>
+<div class="box-title">Kommt Fairnessinitiative, zahlen Sie...</div>
 <div id="initiativeChange" class="change">–</div>
 
 </div>
 <div class="box">
-<div class="box-title">Mit Individualbesteuerung</div>
+<div class="box-title">Kommt Individualbesteuerung, zahlen Sie...</div>
 <div id="individualChange" class="change">–</div>
 
 </div>
 </div>
 
 <div class="policy-switch">
-<div class="policy-switch-title">Bundesrat nutzt Spielraum der Fairness-Initiative...</div>
+<div class="policy-switch-title">Fairness-Initiative: Bundesrat nutzt den Spielraum...</div>
 
 <div class="policy-toggle" role="group" aria-label="Nutzung des Spielraums der Fairnessinitiative">
   <button id="worstBtn" type="button" class="active">Zugunsten der Staatskasse</button>
@@ -218,7 +218,9 @@
 <tr><td>Kinder-Versicherungsabzug</td><td id="testChildInsurance" class="value">–</td><td id="testChildInsuranceFair" class="value">–</td><td id="testAltChildInsurance" class="value">–</td></tr>
 <tr><td>Zweiverdienerabzug</td><td id="testTwoEarner" class="value">–</td><td id="testTwoEarnerFair" class="value">–</td><td class="muted">–</td></tr>
 <tr><td>Verheiratetenabzug</td><td id="testMarriageDeduction" class="value">–</td><td id="testMarriageDeductionFair" class="value">–</td><td class="muted">–</td></tr>
-<tr><td>Einverdienerabzug</td><td class="muted">–</td><td class="muted">–</td><td id="testOneEarner" class="value">–</td></tr>
+
+
+<tr><td>Einverdienerabzug</td><td class="muted">–</td><td id="testOneEarnerFair" class="value">–</td><td id="testOneEarner" class="value">–</td></tr>
 <tr class="section"><td colspan="4">Steuerbares Einkommen und Tarif</td></tr>
 <tr><td>Steuerbares Einkommen</td><td id="testTaxableToday" class="value">–</td><td id="testTaxableFair" class="value">–</td><td id="testTaxableAlt" class="value">–</td></tr>
 
@@ -305,53 +307,72 @@ testToolToggle.addEventListener('click', () => {
   // Abzüge und Steuertarife
 function calculateJobDeduction(income){
     return Math.max(-income,Math.min(-2000,Math.max(-4000,-0.03*income)))
-  } function calculateCurrentMarriedTariff(e){
-    e=Math.max(0,e);
-    if(e<=29700)return 0;
-    if(e<=53400)return(e-29700)*.01;
-    if(e<=61300)return 237+(e-53400)*.02;
-    if(e<=79100)return 395+(e-61300)*.03;
-    if(e<=94900)return 929+(e-79100)*.04;
-    if(e<=108600)return 1561+(e-94900)*.05;
-    if(e<=120500)return 2246+(e-108600)*.06;
-    if(e<=130500)return 2960+(e-120500)*.07;
-    if(e<=138300)return 3660+(e-130500)*.08;
-    if(e<=144200)return 4284+(e-138300)*.09;
-    if(e<=148200)return 4815+(e-144200)*.10;
-    if(e<=150300)return 5215+(e-148200)*.11;
-    if(e<=152300)return 5446+(e-150300)*.12;
-    if(e<=940900)return 5686+(e-152300)*.13;
-    return 108203.5+(e-940900)*.115
-  } function calculateNewIndividualTariff(e){
-    e=Math.max(0,e);
-    if(e<=20000)return 0;
-    if(e<=34300)return(e-20000)*.007;
-    if(e<=44800)return 100.1+(e-34300)*.009;
-    if(e<=59800)return 194.6+(e-44800)*.02;
-    if(e<=78600)return 494.6+(e-59800)*.033;
-    if(e<=84600)return 1115+(e-78600)*.07;
-    if(e<=112200)return 1535+(e-84600)*.08;
-    if(e<=145800)return 3743+(e-112200)*.095;
-    if(e<=190800)return 6935+(e-145800)*.117;
-    if(e<=732100)return 12200+(e-190800)*.133;
-    return 84191.5+(e-732100)*.115
-  }
+  } 
+
+
+function calculateCurrentMarriedTariff(e) {
+  e = Math.max(0, e);
+
+  if (e <= 29700) return 0;
+  if (e <= 53400) return (e - 29700) * 0.01;
+  if (e <= 61300) return 237 + (e - 53400) * 0.02;
+  if (e <= 79100) return 395 + (e - 61300) * 0.03;
+  if (e <= 94900) return 929 + (e - 79100) * 0.04;
+  if (e <= 108700) return 1561 + (e - 94900) * 0.05;
+  if (e <= 120600) return 2251 + (e - 108700) * 0.06;
+  if (e <= 130500) return 2965 + (e - 120600) * 0.07;
+  if (e <= 138400) return 3658 + (e - 130500) * 0.08;
+  if (e <= 144300) return 4290 + (e - 138400) * 0.09;
+  if (e <= 148300) return 4821 + (e - 144300) * 0.10;
+  if (e <= 150400) return 5221 + (e - 148300) * 0.11;
+  if (e <= 152400) return 5452 + (e - 150400) * 0.12;
+  if (e <= 941300) return 5692 + (e - 152400) * 0.13;
+  if (e <= 941400) return 108249 + (e - 941300) * 0.12;
+
+  return 108261 + (e - 941400) * 0.115;
+}
+
+ 
+  
+
+function calculateNewIndividualTariff(e) {
+  e = Math.max(0, e);
+
+  if (e <= 20000) return 0;
+  if (e <= 34300) return (e - 20000) * 0.007;
+  if (e <= 44800) return 100.10 + (e - 34300) * 0.009;
+  if (e <= 59800) return 194.60 + (e - 44800) * 0.02;
+  if (e <= 78600) return 494.60 + (e - 59800) * 0.033;
+  if (e <= 84600) return 1115.00 + (e - 78600) * 0.07;
+  if (e <= 112300) return 1535.00 + (e - 84600) * 0.08;
+  if (e <= 145900) return 3751.00 + (e - 112300) * 0.095;
+  if (e <= 190900) return 6943.00 + (e - 145900) * 0.117;
+  if (e <= 732400) return 12208.00 + (e - 190900) * 0.133;
+
+  return 84226.00 + (e - 732400) * 0.115;
+}
+
 
   // Alter gewöhnlicher Tarif (geltendes Recht)
-  function calculateCurrentSingleTariff(e){
-    e=Math.max(0,e);
-    if(e<=15200)return 0;
-    if(e<=33200)return(e-15200)*.0077;
-    if(e<=43500)return 138.60+(e-33200)*.0088;
-    if(e<=58000)return 229.20+(e-43500)*.0264;
-    if(e<=76100)return 612.00+(e-58000)*.0297;
-    if(e<=82000)return 1149.55+(e-76100)*.0594;
-    if(e<=108800)return 1500.00+(e-82000)*.066;
-    if(e<=141500)return 3268.80+(e-108800)*.088;
-    if(e<=184900)return 6146.40+(e-141500)*.11;
-    if(e<=793300)return 10920.40+(e-184900)*.132;
-    return 91241.00+(e-793400)*.115;
-  }
+
+function calculateCurrentSingleTariff(e) {
+  e = Math.max(0, e);
+
+  if (e <= 15200) return 0;
+  if (e <= 33200) return (e - 15200) * 0.0077;
+  if (e <= 43500) return 138.60 + (e - 33200) * 0.0088;
+  if (e <= 58000) return 229.20 + (e - 43500) * 0.0264;
+  if (e <= 76200) return 612.00 + (e - 58000) * 0.0297;
+  if (e <= 82100) return 1152.50 + (e - 76200) * 0.0594;
+  if (e <= 108900) return 1502.95 + (e - 82100) * 0.066;
+  if (e <= 141500) return 3271.75 + (e - 108900) * 0.088;
+  if (e <= 185100) return 6140.55 + (e - 141500) * 0.11;
+  if (e <= 793900) return 10936.55 + (e - 185100) * 0.132;
+  if (e <= 794000) return 91298.15 + (e - 793900) * 0.1185;
+
+  return 91310.00 + (e - 794000) * 0.115;
+}
+
 
   // Zentrale Berechnung aller Vergleichswerte
 function calculateTaxes(
@@ -407,6 +428,42 @@ if (bothAreWorking) {
 	
 	
 	
+	const lowerIncome = Math.min(incomePartner1, incomePartner2);
+
+	const lowerJobDeduction = bothAreWorking
+	  ? calculateJobDeduction(lowerIncome)
+	  : 0;
+
+	const lowerIncomeAfterCosts = Math.max(
+	  0,
+	  lowerIncome + lowerJobDeduction
+	);
+
+	// Fairnessinitiative, niedrige Belastung:
+	// grosszügigerer Zweiverdienerabzug
+	const fairTwoEarnerDeduction = bothAreWorking
+	  ? -Math.max(
+		  8600,
+		  Math.min(lowerIncomeAfterCosts / 2, 14100)
+		)
+	  : 0;
+
+	// Fairnessinitiative, niedrige Belastung:
+	// Einverdienerabzug bei nur einem Erwerbstätigen
+	const exactlyOneWorking =
+	  (!retiredPartner1 && incomePartner1 > 0) !==
+	  (!retiredPartner2 && incomePartner2 > 0);
+
+	const fairOneEarnerDeduction = exactlyOneWorking
+	  ? -8600
+	  : 0;
+
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -415,7 +472,36 @@ if (bothAreWorking) {
     const taxToday=Math.max(0,calculateCurrentMarriedTariff(taxableIncomeToday)-numberOfChildren*263);
     const taxableIncomeWithoutMarriageDeductions=Math.max(0,combinedIncome+combinedJobDeductions+insuranceDeduction+childDeduction+childInsuranceDeduction);
     const taxWithoutMarriageDeductions=Math.max(0,calculateCurrentMarriedTariff(taxableIncomeWithoutMarriageDeductions)-numberOfChildren*263);
-    const childrenPerPartner=numberOfChildren/2;
+    
+	
+	const taxableIncomeFairWithDeductions = Math.max(
+	  0,
+	  combinedIncome
+		+ combinedJobDeductions
+		+ insuranceDeduction
+		+ childDeduction
+		+ childInsuranceDeduction
+		+ fairTwoEarnerDeduction
+		+ fairOneEarnerDeduction
+		- 2800
+	);
+
+	const taxFairWithDeductions = Math.max(
+	  0,
+	  calculateCurrentMarriedTariff(taxableIncomeFairWithDeductions)
+		- numberOfChildren * 263
+	);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	const childrenPerPartner=numberOfChildren/2;
 
     // Fairnessinitiative: separate Alternativberechnung vor 2032.
     // Kinderabzüge werden je zur Hälfte auf beide Partner verteilt.
@@ -432,34 +518,84 @@ const partner2IsEarner =
 const exactlyOneEarner =
   partner1IsEarner !== partner2IsEarner;
 
-const oneEarnerDeductionPartner1 =
-  exactlyOneEarner && partner1IsEarner
-    ? 8100
-    : 0;
+const oneEarnerDeductionPartner1 = 0;
+const oneEarnerDeductionPartner2 = 0;
 
-const oneEarnerDeductionPartner2 =
-  exactlyOneEarner && partner2IsEarner
-    ? 8100
-    : 0;
+
+
+
+
 
     const taxableAlternativePartner1=fairnessTaxableIncome(incomePartner1,jobDeductionPartner1,oneEarnerDeductionPartner1);
     const taxableAlternativePartner2=fairnessTaxableIncome(incomePartner2,jobDeductionPartner2,oneEarnerDeductionPartner2);
 
     // Modus «Beide Abzüge bleiben»: höheres Einkommen mit altem
     // Verheiratetentarif, tieferes Einkommen mit altem gewöhnlichem Tarif.
-    const partner1IsHigher=incomePartner1>=incomePartner2;
-    const fairnessAlternativeWithDeductions=
-      Math.max(0,(partner1IsHigher?calculateCurrentMarriedTariff(taxableAlternativePartner1):calculateCurrentSingleTariff(taxableAlternativePartner1))-childrenPerPartner*263)+
-      Math.max(0,(partner1IsHigher?calculateCurrentSingleTariff(taxableAlternativePartner2):calculateCurrentMarriedTariff(taxableAlternativePartner2))-childrenPerPartner*263);
+    
+	const partner1IsHigher = incomePartner1 >= incomePartner2;
+	const hasChildren = numberOfChildren > 0;
+	
+	const childCreditPartner1 = partner1IsHigher ? numberOfChildren * 263 : 0;
+	const childCreditPartner2 = partner1IsHigher ? 0 : numberOfChildren * 263;
+
+	
+
+	const fairnessAlternativeWithDeductions =
+	  Math.max(0, (
+		hasChildren && partner1IsHigher
+		  ? calculateCurrentMarriedTariff(taxableAlternativePartner1)
+		  : calculateCurrentSingleTariff(taxableAlternativePartner1)
+	  ) - childCreditPartner1) +
+	  Math.max(0, (
+		hasChildren && !partner1IsHigher
+		  ? calculateCurrentMarriedTariff(taxableAlternativePartner2)
+		  : calculateCurrentSingleTariff(taxableAlternativePartner2)
+	  ) - childCreditPartner2);
+
+
 
     // Modus «Beide Abzüge entfallen»: beide Partner mit dem alten
     // gewöhnlichen Tarif.
-    const fairnessAlternativeWithoutDeductions=
-      Math.max(0,calculateCurrentSingleTariff(taxableAlternativePartner1)-childrenPerPartner*263)+
-      Math.max(0,calculateCurrentSingleTariff(taxableAlternativePartner2)-childrenPerPartner*263);
 
-    const initiativeTaxWithDeductions=Math.min(taxToday,fairnessAlternativeWithDeductions);
-    const initiativeTaxWithoutDeductions=Math.min(taxWithoutMarriageDeductions,fairnessAlternativeWithoutDeductions);
+	
+	
+    
+
+const fairnessAlternativeWithoutDeductions =
+  Math.max(
+    0,
+    calculateCurrentSingleTariff(taxableAlternativePartner1)
+      - childrenPerPartner * 263
+  ) +
+  Math.max(
+    0,
+    calculateCurrentSingleTariff(taxableAlternativePartner2)
+      - childrenPerPartner * 263
+  );
+
+
+
+
+	
+	
+	
+    
+	
+const initiativeTaxWithDeductions = Math.min(
+  taxFairWithDeductions,
+  fairnessAlternativeWithDeductions
+);
+
+const initiativeTaxWithoutDeductions = Math.min(
+  taxWithoutMarriageDeductions,
+  fairnessAlternativeWithoutDeductions
+);
+
+
+	
+	
+	
+	
 
     /* Individualbesteuerung gemäss Excel-Tabelle:
    je Person CHF 1'800 Versicherungsabzug, Kinderabzug CHF 12'000
@@ -476,7 +612,19 @@ const oneEarnerDeductionPartner2 =
   initiativeTaxWithoutDeductions,
   individualTax,
       debug:{
+	  
+		fairTwoEarnerDeduction,
+		fairOneEarnerDeduction,
+		taxableIncomeFairWithDeductions,
+		taxBeforeChildCreditFairWithDeductions:
+		  calculateCurrentMarriedTariff(taxableIncomeFairWithDeductions),
+	  
+	  
+	  
+	  
         jobDeductionPartner1,jobDeductionPartner2,insuranceDeduction,childDeduction,
+		
+		
         childInsuranceDeduction,twoEarnerDeduction,taxableIncomeToday,
         taxBeforeChildCreditToday:calculateCurrentMarriedTariff(taxableIncomeToday),
         taxableIncomeWithoutMarriageDeductions,
@@ -484,11 +632,43 @@ const oneEarnerDeductionPartner2 =
         childCreditToday:numberOfChildren*263,childrenPerPartner,
         oneEarnerDeductionPartner1,oneEarnerDeductionPartner2,
         taxableAlternativePartner1,taxableAlternativePartner2,
-        alternativePartner1Tariff:partner1IsHigher?'Verheirateten-Tarif':'Gewöhnlicher Tarif',
-        alternativePartner2Tariff:partner1IsHigher?'Gewöhnlicher Tarif':'Verheirateten-Tarif',
-        alternativePartner1TaxBeforeChildCredit:partner1IsHigher?calculateCurrentMarriedTariff(taxableAlternativePartner1):calculateCurrentSingleTariff(taxableAlternativePartner1),
-        alternativePartner2TaxBeforeChildCredit:partner1IsHigher?calculateCurrentSingleTariff(taxableAlternativePartner2):calculateCurrentMarriedTariff(taxableAlternativePartner2),
-        childCreditAlternative1:childrenPerPartner*263,childCreditAlternative2:childrenPerPartner*263,
+		
+		
+		alternativePartner1Tariff:
+		  hasChildren && partner1IsHigher
+			? 'Verheirateten-Tarif'
+			: 'Gewöhnlicher Tarif',
+
+		alternativePartner2Tariff:
+		  hasChildren && !partner1IsHigher
+			? 'Verheirateten-Tarif'
+			: 'Gewöhnlicher Tarif',
+
+		alternativePartner1TaxBeforeChildCredit:
+		  hasChildren && partner1IsHigher
+			? calculateCurrentMarriedTariff(taxableAlternativePartner1)
+			: calculateCurrentSingleTariff(taxableAlternativePartner1),
+
+		alternativePartner2TaxBeforeChildCredit:
+		  hasChildren && !partner1IsHigher
+			? calculateCurrentMarriedTariff(taxableAlternativePartner2)
+			: calculateCurrentSingleTariff(taxableAlternativePartner2),
+
+		
+		
+		
+		
+        
+        
+
+childCreditAlternative1:
+  childCreditPartner1,
+childCreditAlternative2:
+  childCreditPartner2,
+
+		
+		
+		
         fairnessAlternativeWithDeductions,fairnessAlternativeWithoutDeductions
       }
     }
@@ -505,9 +685,19 @@ function displayTaxDifference(element,difference){
     const fairTax=initiativeVariant==='best'
       ? d.fairnessAlternativeWithDeductions
       : d.fairnessAlternativeWithoutDeductions;
-    const fairCommonTax=initiativeVariant==='best' ? r.taxToday : r.taxWithoutMarriageDeductions;
-    const fairCommonTaxable=initiativeVariant==='best' ? d.taxableIncomeToday : d.taxableIncomeWithoutMarriageDeductions;
-    const fairCommonBeforeCredit=initiativeVariant==='best' ? d.taxBeforeChildCreditToday : d.taxBeforeChildCreditWithoutMarriageDeductions;
+		
+	const fairCommonTax = initiativeVariant === 'best'
+	  ? Math.max(0, d.taxBeforeChildCreditFairWithDeductions - k * 263)
+	  : r.taxWithoutMarriageDeductions;
+
+	const fairCommonTaxable = initiativeVariant === 'best'
+	  ? d.taxableIncomeFairWithDeductions
+	  : d.taxableIncomeWithoutMarriageDeductions;
+
+	const fairCommonBeforeCredit = initiativeVariant === 'best'
+	  ? d.taxBeforeChildCreditFairWithDeductions
+	  : d.taxBeforeChildCreditWithoutMarriageDeductions;
+
 
     const set=(id,v)=>getElement(id).innerHTML=v;
     const val=n=>testFrancs(n);
@@ -521,8 +711,10 @@ function displayTaxDifference(element,difference){
     set('testJob1Fair',ded(d.jobDeductionPartner1)); set('testJob2Fair',ded(d.jobDeductionPartner2));
     set('testInsuranceFair',ded(d.insuranceDeduction)); set('testChildDeductionFair',ded(d.childDeduction));
     set('testChildInsuranceFair',ded(d.childInsuranceDeduction));
-    set('testTwoEarnerFair',initiativeVariant==='best'?ded(d.twoEarnerDeduction):'–');
+    set('testTwoEarnerFair',initiativeVariant==='best'?ded(d.fairTwoEarnerDeduction):'–');
     set('testMarriageDeductionFair',initiativeVariant==='best'?ded(-2800):'–');
+	set('testOneEarnerFair',
+		initiativeVariant==='best'?ded(d.fairOneEarnerDeduction):'–');
 
     set('testAltJob1',ded(d.jobDeductionPartner1)); set('testAltJob2',ded(d.jobDeductionPartner2));
     set('testAltInsurance',ded(-1800)); set('testAltChildDeduction',ded(-d.childrenPerPartner*6800));
@@ -545,33 +737,39 @@ let alternativeTariff2;
 let alternativeTaxBeforeCredit1;
 let alternativeTaxBeforeCredit2;
 
+
 if (initiativeVariant === 'best') {
 
-  // Zugunsten der Steuerzahler:
-  // höheres Einkommen Verheirateten-Tarif,
-  // tieferes Einkommen gewöhnlicher Tarif.
+  const hasChildren = k > 0;
 
   alternativeTariff1 =
-    partner1IsHigher
+    hasChildren && partner1IsHigher
       ? 'Verheirateten-Tarif'
       : 'Gewöhnlicher Tarif';
 
   alternativeTariff2 =
-    partner1IsHigher
-      ? 'Gewöhnlicher Tarif'
-      : 'Verheirateten-Tarif';
+    hasChildren && !partner1IsHigher
+      ? 'Verheirateten-Tarif'
+      : 'Gewöhnlicher Tarif';
 
   alternativeTaxBeforeCredit1 =
-    partner1IsHigher
+    hasChildren && partner1IsHigher
       ? calculateCurrentMarriedTariff(d.taxableAlternativePartner1)
       : calculateCurrentSingleTariff(d.taxableAlternativePartner1);
 
   alternativeTaxBeforeCredit2 =
-    partner1IsHigher
-      ? calculateCurrentSingleTariff(d.taxableAlternativePartner2)
-      : calculateCurrentMarriedTariff(d.taxableAlternativePartner2);
+    hasChildren && !partner1IsHigher
+      ? calculateCurrentMarriedTariff(d.taxableAlternativePartner2)
+      : calculateCurrentSingleTariff(d.taxableAlternativePartner2);
 
-} else {
+}
+
+
+
+
+ 
+
+else {
 
   // Zugunsten der Staatskasse:
   // beide Partner gewöhnlicher Tarif.
@@ -609,7 +807,26 @@ set(
 
     set('testChildCredit',ded(-d.childCreditToday));
     set('testChildCreditFair',ded(-d.childCreditToday));
-    set('testAltChildCredit',`P1: ${ded(-d.childCreditAlternative1)}<br>P2: ${ded(-d.childCreditAlternative2)}`);
+   
+   
+	const altChildCredit1 = initiativeVariant === 'best'
+	  ? d.childCreditAlternative1
+	  : k / 2 * 263;
+
+	const altChildCredit2 = initiativeVariant === 'best'
+	  ? d.childCreditAlternative2
+	  : k / 2 * 263;
+
+	set(
+	  'testAltChildCredit',
+	  `P1: ${ded(-altChildCredit1)}<br>P2: ${ded(-altChildCredit2)}`
+	);
+
+   
+   
+   
+   
+   
 
     set('testCurrentTax',val(r.taxToday)); set('testFairTax',val(fairCommonTax)); set('testAlternativeTax',val(fairTax));
 
@@ -646,7 +863,7 @@ const job2 = retiredPartner2
 	
 	
     const insurance=-1800;
-    const child=-childrenPerPartner*6000;
+    const child=-childrenPerPartner*12000;
     const childInsurance=-childrenPerPartner*700;
 
     const taxable1=Math.max(0,income1+job1+insurance+child+childInsurance);
