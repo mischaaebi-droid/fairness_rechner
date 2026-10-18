@@ -657,6 +657,19 @@ const r = calculateTaxes(
     getElement('income2Text').textContent=`CHF ${formatFrancs(b)}`;
     getElement('kidsValue').textContent=String(numberOfChildren);
     getElement('todayTax').textContent=`CHF ${formatFrancs(r.taxToday)}`;
+	
+	// Eingabewerte in beiden Testtabellen anzeigen
+	const testInputsText =
+	  `Person 1: CHF ${formatFrancs(a)} · ` +
+	  `Person 2: CHF ${formatFrancs(b)} · ` +
+	  `Kinder: ${numberOfChildren}`;
+
+getElement('testInputsFair').textContent = testInputsText;
+getElement('testInputsIndividual').textContent = testInputsText;
+	
+	
+	
+	
     const initiativeTax=initiativeVariant==='best'?r.initiativeTaxWithDeductions:r.initiativeTaxWithoutDeductions;
     const individualTax=r.individualTax;
     displayTaxDifference(getElement('initiativeChange'),initiativeTax-r.taxToday);

@@ -22,59 +22,47 @@
 
 
 
-<style>
 
-</style>
 </head>
 <body>
 <div class="wrap">
 <div class="card">
-<h1>Was zahlen Ehepaare künftig an Steuern?</h1>
-<p class="intro">Vergleichen Sie die direkte Bundessteuer: heute, mit Fairnessinitiative und mit Individualbesteuerung.</p>
+<h1>Wie viel Bundessteuern Ehepaare künftig zahlen</h1>
+<p class="intro">Geben Sie den <strong>Nettolohn</strong> an: Den Betrag, den Ihr Arbeitgeber pro Jahr tatsächlich auszahlt. Sie sehen dann, wie viel Bundessteuer Sie je nach Reform zahlen würden.</p>
 <div class="inputs">
 <div class="slider-stack">
-<label>
-<div class="range-head">
-<span>Jahresnettolohn · Person 1</span>
-<span class="income-right">
-  <span id="income1Text" class="range-value">CHF 162’000</span>
-  <label class="pension-check">
-    <input id="retired1" type="checkbox">
-    <span>pensioniert</span>
-  </label>
-</span>
+<div class="income-card">
+  <div class="range-head">
+    <div class="income-label-row"><span>Jährliches Nettoeinkommen · Person 1</span><label class="pension-check" for="retired1"><input id="retired1" type="checkbox"><span>pensioniert</span></label></div>
+    <span id="income1Text" class="range-value">CHF 162’000</span>
+  </div>
+  <input id="income1" type="range" min="0" max="300000" step="1000" value="162000" aria-label="Jährliches Nettoeinkommen Person 1">
 </div>
-<input id="income1" type="range" min="0" max="300000" step="1000" value="162000">
-</label>
-<label>
-<div class="range-head">
-<span>Jahresnettolohn · Person 2</span>
-<span class="income-right">
-  <span id="income2Text" class="range-value">CHF 18’000</span>
-  <label class="pension-check">
-    <input id="retired2" type="checkbox">
-    <span>pensioniert</span>
-  </label>
-</span>
+<div class="income-card">
+  <div class="range-head">
+    <div class="income-label-row"><span>Jährliches Nettoeinkommen · Person 2</span><label class="pension-check" for="retired2"><input id="retired2" type="checkbox"><span>pensioniert</span></label></div>
+    <span id="income2Text" class="range-value">CHF 18’000</span>
+  </div>
+  <input id="income2" type="range" min="0" max="300000" step="1000" value="18000" aria-label="Jährliches Nettoeinkommen Person 2">
 </div>
-<input id="income2" type="range" min="0" max="300000" step="1000" value="18000">
-</label>
-<div class="kids-input">
-<div class="kids-label">Unterstützungspflichtige Kinder <span id="kidsValue" class="kids-current">0</span></div>
-<div class="kids-range-wrap">
-<input id="kids" class="kids-range" type="range" min="0" max="5" step="1" value="0" aria-label="Anzahl Kinder">
-<div class="kids-ticks" aria-hidden="true">
-<span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+<div class="kids-input kids-compact">
+  <span class="kids-compact-label">Kinder (unterstützungspflichtig)</span>
+  <div class="kids-stepper" role="group" aria-label="Anzahl unterstützungspflichtiger Kinder">
+    <button id="kidsMinus" type="button" aria-label="Ein Kind weniger">−</button>
+    <output id="kidsValue" for="kids">0</output>
+    <button id="kidsPlus" type="button" aria-label="Ein Kind mehr">+</button>
+  </div>
+  <input id="kids" class="visually-hidden-kids" type="range" min="0" max="5" step="1" value="0" tabindex="-1" aria-hidden="true">
 </div>
-</div>
+
 </div>
 
 </div>
 </div>
-</div>
 <div class="card results-card">
+<div class="results-summary">
 <div class="hero">
-<div class="hero-label">Direkte Bundessteuer heute <span class="hero-context">· jährlicher Steuerbetrag</span></div>
+<div class="hero-label">Ihre Bundessteuer heute</div>
 <div id="todayTax" class="hero-value">–</div>
 
 <!--
@@ -89,23 +77,24 @@
 </div>
 <div class="compare">
 <div class="box">
-<div class="box-title">Fairnessinitiative</div>
-<div id="initiativeChange" class="change">–</div><div class="compare-caption">gegenüber heute</div>
+<div class="box-title">Falls Mitte-Initative<br>kommt</div>
+<div id="initiativeChange" class="change">–</div>
 
 </div>
 <div class="box">
-<div class="box-title">Individualbesteuerung</div>
-<div id="individualChange" class="change">–</div><div class="compare-caption">gegenüber heute</div>
+<div class="box-title">Falls Individualsteuer<br> kommt</div>
+<div id="individualChange" class="change">–</div>
 
 </div>
 </div>
 
+</div>
 <div class="policy-switch">
-<div class="policy-switch-title">Spielraum bei der Fairnessinitiative</div>
+<div class="policy-switch-title">Spieraum des Bundesrates bei der Umsetzung der Fairness-Initative</div>
 
 <div class="policy-toggle" role="group" aria-label="Nutzung des Spielraums der Fairnessinitiative">
-  <button id="worstBtn" type="button" class="active">Mehr Einnahmen für den Bund</button>
-  <button id="bestBtn" type="button">Weniger Steuern für Ehepaare</button>
+  <button id="worstBtn" type="button" class="active">Zugunsten der Staatskasse</button>
+  <button id="bestBtn" type="button">Zugunsten der Steuerzaher</button>
 </div>
 
 <!-- gibt noch eine switch js-componente dazu. sie ist ebenfalls auskommentiert <div id="variantExplain" class="policy-explain">Verheirateten- und Zweiverdienerabzug bleiben bestehen</div> -->
@@ -205,7 +194,15 @@
 
 <details class="card test-tool">
 <summary>Testtool Berechnung Fairness</summary>
+
+
+
 <div class="test-tool-content">
+
+<div class="test-inputs" id="testInputsFair"></div>
+
+
+
 <table class="test-table">
 <colgroup><col class="test-label-col"><col class="test-num-col"><col class="test-num-col"><col class="test-num-col"></colgroup>
 <thead><tr><th></th><th class="num-head">Aktuelle<br>Steuer</th><th class="num-head">Fairnessinitiative<br>gemeinsam</th><th class="num-head">Fairnessinitiative<br>separat</th></tr></thead>
@@ -248,7 +245,9 @@
 
 <details class="card test-tool">
   <summary>Testtool Berechnung Individualbesteuerung</summary>
+
   <div class="test-tool-content">
+    <div class="test-inputs" id="testInputsIndividual"></div>
     <table class="test-table">
       <colgroup><col class="test-label-col"><col class="test-num-col"><col class="test-num-col"><col class="test-num-col"></colgroup>
       <thead><tr><th></th><th class="num-head">Partner 1</th><th class="num-head">Partner 2</th><th class="num-head">Total</th></tr></thead>
@@ -275,4 +274,6 @@
 
 </div>
 
-<script src="berechnungen.js"></script></body></html>
+<script src="berechnungen.js"></script>
+<script src="bedienung.js"></script>
+</body></html>
