@@ -25,7 +25,7 @@
   --tagi-line: #e6dfcc;        /* feine Trennlinien */
   --tagi-muted: #66627a;       /* dezente Beschriftungen */
   --tagi-white: #ffffff;
-  --tagi-yellow: #fff9e7;      /* helles Gelb der Eingaben und Resultate */
+  --tagi-yellow: #fff6dd;      /* helles Gelb der Eingaben und Resultate heller:  #fff9e7 */ 
   --tax-less: #16833a;         /* grün: weniger Steuern */
   --tax-more: #b63a2b;         /* rot: mehr Steuern */
 }
