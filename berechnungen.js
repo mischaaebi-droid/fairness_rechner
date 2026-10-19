@@ -395,7 +395,11 @@ childCreditAlternative2:
         fairnessAlternativeWithDeductions,fairnessAlternativeWithoutDeductions
       }
     }
-  } // Darstellung der Steuerdifferenzen im Frontend
+  }
+
+window.taxExportCalculate = calculateTaxes;
+
+  // Darstellung der Steuerdifferenzen im Frontend
 function displayTaxDifference(element,difference){
     element.className='change '+(difference<-.5?'less':difference>.5?'more':'same');
     element.textContent=Math.abs(difference)<=.5?'gleich viel':`CHF ${formatFrancs(Math.abs(difference))} ${difference<0?'weniger':'mehr'}`
