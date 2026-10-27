@@ -19,6 +19,7 @@
 /* 01 – FARBEN UND SCHRIFTEN
    Hier kannst du die Farben für die gesamte Oberfläche ändern. */
 :root {
+	 color-scheme: light;
   --tagi-ink: #202346;         /* Violett: Haupttext, Schieber, Schalter */
   --tagi-paper: #fffdf5;       /* Seitenhintergrund, fast weiss */
   --tagi-panel: #fff7dc;       /* Hintergrund des Fairness-Umschalters */
@@ -74,7 +75,7 @@ h1 {
   margin: 0;
   max-width: 680px;
   color: var(--tagi-muted);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.45;
 }
 
@@ -180,7 +181,7 @@ h1 {
 }
 .kids-compact-label {
   color: var(--tagi-muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -295,7 +296,7 @@ margin-top:4px;
 .results-card .compare .box-title {
   margin: 0 0 5px;
   color: var(--tagi-ink);
-  font-size: clamp(11px, 2.9vw, 13px);
+  font-size: 13px;
   font-weight: 700;
   line-height: 1.35;
   overflow-wrap: break-word;
@@ -336,7 +337,7 @@ margin-top:4px;
   margin: 0;
   max-width: 680px;
   color: var(--tagi-muted);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.45;
   
 
@@ -381,7 +382,7 @@ margin-top:4px;
   transform: translateX(100%);
   transition: transform .24s cubic-bezier(.22,.8,.25,1);
 }
-.policy-toggle.is-worst::before { transform: translateX(0); }
+.policy-toggle.is-worst::before { transform: translateX(); }
 .policy-toggle button {
   position: relative;
   z-index: 1;
@@ -419,13 +420,13 @@ margin-top:4px;
 
 /* Schaukeln von links nach rechts */
 @keyframes switchHintWorst {
-  0%, 100% { transform: translateX(0); }
-  14% { transform: translateX(8px); }
-  29% { transform: translateX(3px); }
-  46% { transform: translateX(14px); }
-  62% { transform: translateX(4px); }
-  76% { transform: translateX(10px); }
-  89% { transform: translateX(2px); }
+  0%, 100% { transform: translateX(-4px); }
+  14% { transform: translateX(4px); }
+  29% { transform: translateX(-1px); }
+  46% { transform: translateX(10px); }
+  62% { transform: translateX(0px); }
+  76% { transform: translateX(6px); }
+  89% { transform: translateX(-2px); }
 }
 
 /* Schaukeln von rechts nach links */
@@ -477,15 +478,25 @@ margin-top:4px;
   font-weight: 700;
   list-style-position: inside;
 }
+
+.methodology summary span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--tax-more);
+}
+
+
+
+
 .methodology-content {
   max-width: 760px;
   margin: 12px auto 2px;
   color: var(--tagi-ink);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
 }
 .methodology-content p { margin: 0 0 14px; }
-.methodology-content h3 { margin: 16px 0 7px; font-size: 13px; font-weight: 700; }
+.methodology-content h3 { margin: 16px 0 7px; font-size: 15px; font-weight: 700; }
 .methodology-content ol { margin: 0 0 14px; padding-left: 20px; }
 .methodology-content li { margin-bottom: 5px; }
 .test-tool-toggle {
@@ -536,9 +547,9 @@ margin-top:4px;
   .slider-stack { gap: 9px; }
   .income-card { padding: 11px 9px 9px; }
   .income-label-row { gap: 6px; }
-  .income-label-row > span:first-child { flex: 1 1 auto; font-size: 11px; }
+  .income-label-row > span:first-child { flex: 1 1 auto; font-size: 13px; }
   .income-label-row .pension-check { flex: 0 0 auto; gap: 4px; font-size: 11px; }
-  .income-label-row .pension-check span { font-size: 11px; }
+  .income-label-row .pension-check span { font-size: 13px; }
   .range-value { font-size: 16px; }
   .kids-compact { padding: 0 1px; min-height: 40px; }
 
@@ -549,7 +560,7 @@ margin-top:4px;
     border-radius: 13px 13px 0 0;
   }
   .results-card .hero { align-items: flex-start; gap: 9px; }
-  .hero-label { font-size: 13px; }
+  .hero-label { font-size: 15px; }
   .hero-context { display: block; margin-top: 2px; }
   .hero-value { font-size: 26px; }
   .results-card .compare .box-title { line-height: 1.35; }

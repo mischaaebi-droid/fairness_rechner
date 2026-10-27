@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>Fairnessinitiative – Steuerrechner</title>
 
 
@@ -124,11 +125,11 @@
 
 
 <div class="policy-switch">
-<div class="policy-switch-title">Der Bundesrat hat einen kleinen Spielraum bei Auslegung der Mitte-Initiative (Erklärung siehe Artikel):</div>
+<div class="policy-switch-title">Der Bundesrat hat einen Spielraum bei Auslegung der Mitte-Initiative (siehe Artikel):</div>
 
 <div class="policy-toggle" role="group" aria-label="Nutzung des Spielraums der Fairnessinitiative">
-  <button id="worstBtn" type="button" class="active">Ungünstigste Auslegung<br>für Ehepaare</button>
-  <button id="bestBtn" type="button">Günstigste Auslegung<br> für Ehepaare</button>
+  <button id="worstBtn" type="button" class="active">Ungünstigste <br> Auslegung<br>für Ehepaare</button>
+  <button id="bestBtn" type="button">Günstigste<br> Auslegung<br> für Ehepaare</button>
 </div>
 
 <!-- gibt noch eine switch js-componente dazu. sie ist ebenfalls auskommentiert <div id="variantExplain" class="policy-explain">Verheirateten- und Zweiverdienerabzug bleiben bestehen</div> -->
@@ -177,7 +178,7 @@
 
 
 <details class="card methodology">
-  <summary>Methodik</summary>
+  <summary>Methodik <span>- Berechnungen durch Steuerverwaltung geprüft.</span></summary>
 
   <div class="methodology-content">
 
@@ -186,10 +187,10 @@
     <p>
       Der Bundesrat erklärt in seiner Botschaft, welchen Spielraum er bei
       einer Umsetzung der Initiative hat, wenn er sie per Verordnung umsetzen musss. Der Rechner bildet genau diesen
-      beschriebenen Spielraum ab.
+      beschriebenen Spielraum ab. Der Rechner wurde von Experten der eidgenössischen Steuerverwaltung geprüft.
     </p>
 
-    <h3>Fairnessinitiative der Mitte: Günstigste Auslegung für Ehepaare</h3>
+    <h3>Fairnessinitiative: Günstigste Auslegung für Ehepaare</h3>
 
     <ol>
       <li>
@@ -212,7 +213,7 @@
       </li>
     </ol>
 
-    <h3>Fairnessinitiative der Mitte: Spielraum zugunsten Staatskasse</h3>
+    <h3>Fairnessinitiative: Ungünstigste Auslegung für Ehepaare</h3>
 
     <ol>
       <li>
@@ -362,8 +363,7 @@
 
 <script src="berechnungen.js"></script>
 <script src="bedienung.js"></script>
-<script src="jspdf.umd.min.js"></script>
-<script src="jspdf.plugin.autotable.min.js"></script>
+
 <script src="pdf-export.js"></script>
 
 
