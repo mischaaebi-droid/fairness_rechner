@@ -530,7 +530,7 @@ margin-top:4px;
    Nur hier stehen Änderungen, die ausschliesslich die Handyansicht
    betreffen. Desktop erhält unverändert die Definitionen oben. */
 @media (max-width: 700px) {
-  body { padding: 10px 8px; }
+  body { padding: 10px 4px; }
   .card { padding: 18px 16px; border-radius: 13px; margin-bottom: 10px; }
   .inputs { margin-top: 16px; }
   .slider-stack { gap: 9px; }
